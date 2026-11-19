@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosjekt Elsa – for en lysere morgendag | Racingarv med reell effekt</title>
+    <meta name="description" content="Ideell forening som bruker klassisk motorsport, isbanekjøring, Årsunda Speedweek og utstillinger til å samle inn midler til SFK.no – prosjekt Superselma.">
+
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brg: {
+                            DEFAULT: '#102E1E',
+                            light: '#1B4D33',
+                            dark: '#0A1E13',
+                            muted: '#23593D'
+                        },
+                        gold: {
+                            DEFAULT: '#C9A86A',
+                            light: '#DFC48E',
+                            dark: '#A88649'
+                        },
+                        ivory: '#F8F9F8',
+                        slate: {
+                            dark: '#1A2420'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(16, 46, 30, 0.08)',
+                        'gold': '0 10px 30px -5px rgba(201, 168, 106, 0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dekorativ racingstripe og mønstre */
+        .racing-stripe {
+            background: linear-gradient(90deg, #C9A86A 0%, #DFC48E 50%, #C9A86A 100%);
+        }
+        .hero-grid {
+            background-image: radial-gradient(rgba(201, 168, 106, 0.14) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(201, 168, 106, 0.25);
+        }
+
+        /* Tilpasset rullefelt */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9F8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1B4D33;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #102E1E;
+        }
+    </style>
+</head>
+<body class="bg-ivory text-slate-dark font-sans antialiased selection:bg-brg selection:text-gold">
+
+    <!-- Øverste racingstripe -->
+    <div class="h-1.5 w-full racing-stripe"></div>
+
+    <!-- Navigasjon -->
+    <header class="sticky top-0 z-40 bg-brg/95 backdrop-blur-md text-white border-b border-gold/20 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo og foreningsnavn -->
+                <a href="#" class="flex items-center gap-3.5 group">
+                    <div class="w-11 h-11 rounded-xl bg-brg-light border-2 border-gold flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6 text-gold" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16 3L27 8V16C27 22.8 22.2 27.6 16 29C9.8 27.6 5 22.8 5 16V8L16 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M11 21L14.5 11H21L19.8 14H16.2L15.4 16.2H18.8L17.8 19H14.4L13.7 21H11Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">
+                            PROSJEKT <span class="text-gold">ELSA</span>
+                        </span>
+                        <span data-i18n="brandSubtitle" class="text-[11px] uppercase tracking-widest text-gold-light/90 font-medium mt-1">
+                            For en lysere morgendag
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop-meny -->
+                <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-gray-200" aria-label="Hovedmeny">
+                    <a href="#om-prosjektet" data-i18n="navAbout" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Om prosjektet</a>
+                    <a href="#superselma" data-i18n="navPurpose" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Formålet & Superselma</a>
+                    <a href="#bilen-lopet" data-i18n="navCar" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Bilen & Løpet</a>
+                    <a href="#stottespillere" data-i18n="navSupporters" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Støttespillere</a>
+                    <a href="#sponsor" onclick="selectSponsorTab('sponsing')" data-i18n="navGiveSponsor" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Gi sponsing</a>
+                    <a href="#sponsor" onclick="selectSponsorTab('teambuilding')" data-i18n="navBookTeam" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Bestill teambuilding</a>
+                    <a href="#styret" data-i18n="navBoard" class="hover:text-gold transition-colors py-2 whitespace-nowrap">Kontakt & Styret</a>
+                </nav>
+
+                <!-- Språkvelger (NO / EN), handlingsknapp og mobilmeny-knapp -->
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="inline-flex items-center rounded-xl bg-brg-dark/90 border border-gold/40 p-1 text-xs font-display font-bold" role="group" aria-label="Språkvelger / Language switcher">
+                        <button type="button" id="lang-btn-no" onclick="setLanguage('no')" aria-pressed="true" class="px-2.5 py-1.5 rounded-lg bg-gold text-brg-dark transition-colors cursor-pointer">
+                            NO
+                        </button>
+                        <button type="button" id="lang-btn-en" onclick="setLanguage('en')" aria-pressed="false" class="px-2.5 py-1.5 rounded-lg text-gold-light hover:text-white transition-colors cursor-pointer">
+                            EN
+                        </button>
+                    </div>
+
+                    <button type="button" onclick="openDonationModal()" class="hidden sm:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-brg-dark font-display font-bold text-sm px-4 lg:px-5 py-2.5 rounded-xl shadow-gold transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                        <span data-i18n="ctaSupport">Støtt saken</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" type="button" aria-label="Åpne meny" aria-expanded="false" class="lg:hidden p-2.5 rounded-xl bg-brg-light text-gold hover:bg-brg-muted focus:outline-none cursor-pointer">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobilmeny -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brg-dark border-t border-gold/20 px-4 pt-3 pb-6 space-y-2">
+            <a href="#om-prosjektet" data-i18n="navAbout" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Om prosjektet</a>
+            <a href="#superselma" data-i18n="navPurpose" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Formålet & Superselma</a>
+            <a href="#bilen-lopet" data-i18n="navCar" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Bilen & Løpet</a>
+            <a href="#stottespillere" data-i18n="navSupporters" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Støttespillere</a>
+            <a href="#sponsor" onclick="selectSponsorTab('sponsing')" data-i18n="navGiveSponsor" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Gi sponsing</a>
+            <a href="#sponsor" onclick="selectSponsorTab('teambuilding')" data-i18n="navBookTeam" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Bestill teambuilding</a>
+            <a href="#styret" data-i18n="navBoard" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-100 hover:bg-brg-light hover:text-gold">Kontakt & Styret</a>
+            <div class="pt-2">
+                <button type="button" onclick="openDonationModal()" class="w-full flex items-center justify-center gap-2 bg-gold text-brg-dark font-display font-bold text-base px-5 py-3.5 rounded-xl shadow-gold cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    <span data-i18n="ctaVippsDonate">Støtt via Vipps / Doner</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO-SEKSJON -->
+        <section class="relative bg-brg text-white overflow-hidden hero-grid">
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-brg-light rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+            <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
+
+                    <!-- Venstre introduksjon -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brg-light/90 border border-gold/40 text-gold text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                            <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                            <span data-i18n="heroBadge">Ideell forening • Stiftet i Bærum 2026</span>
+                        </div>
+
+                        <h1 data-i18n-html="heroTitle" class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white">
+                            Prosjekt Elsa – <br class="hidden sm:inline" />
+                            <span class="text-gold">for en lysere morgendag</span>
+                        </h1>
+
+                        <p data-i18n="heroSlogan" class="font-display italic font-bold text-xl sm:text-2xl text-gold-light tracking-wide">
+                            «Racingarv med reell effekt»
+                        </p>
+
+                        <p data-i18n-html="heroLead" class="text-base sm:text-lg text-gray-200 leading-relaxed max-w-2xl">
+                            Vi forener lidenskapen for klassisk motorsport, isbanekjøring, Årsunda Speedweek og publikumsutstillinger på Gatebil og Oslo Motor Show med ett tydelig mål: å skape lyspunkter for kreftsyke barn og deres familier gjennom <strong>SFK.no – prosjekt Superselma (org.nr. 963 064 853)</strong>. Vi skal også ha det gøy underveis i innsamlingen for alle som bidrar :)
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <button type="button" onclick="openDonationModal()" class="inline-flex items-center justify-center gap-2.5 bg-gold hover:bg-gold-light text-brg-dark font-display font-bold text-base px-7 py-4 rounded-xl shadow-gold transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span data-i18n="heroDonateBtn">Støtt via Vipps / Doner</span>
+                            </button>
+                            <a href="#sponsor" onclick="selectSponsorTab('teambuilding')" class="inline-flex items-center justify-center gap-2.5 bg-brg-light hover:bg-brg-muted text-white border border-gold/40 font-display font-bold text-base px-7 py-4 rounded-xl transition-all">
+                                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <span data-i18n="heroBookBtn">Bestill teambuilding</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Høyre presentasjonsramme for Elsa -->
+                    <div class="lg:col-span-6">
+                        <div class="glass-card rounded-3xl p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold/20 pb-4 mb-5">
+                                <div>
+                                    <span data-i18n="heroPeriodLabel" class="text-xs uppercase tracking-widest text-gold font-semibold">Prosjektperiode</span>
+                                    <p class="font-display font-extrabold text-xl sm:text-2xl text-white mt-0.5">2026 – 2028</p>
+                                </div>
+                                <div data-i18n="heroCarPill" class="px-3.5 py-1.5 rounded-xl bg-gold/15 border border-gold/40 text-gold font-display font-bold text-xs tracking-wider uppercase">
+                                    Jaguar & Swallows Racing • Over 600 Nm
+                                </div>
+                            </div>
+
+                            <!-- Bilde av Elsa i hero-ramme -->
+                            <div class="rounded-2xl overflow-hidden bg-brg-dark/90 border border-gold/30 mb-5">
+                                <img
+                                    id="bilde-elsa-hoved"
+                                    class="bilde-elsa w-full h-56 sm:h-72 object-cover block"
+                                    alt="Elsa – Jaguar X300 isbil med startnummer 26 og SuperSelma-profilering"
+                                    onerror="handleElsaImageError(this, 'fallback-elsa-hoved')"
+                                >
+                                <!-- Fallback dersom bildefilen ikke er tilgjengelig -->
+                                <div id="fallback-elsa-hoved" class="hidden p-6 sm:p-8 text-center bg-gradient-to-br from-brg-dark via-brg to-brg-light">
+                                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold/15 border border-gold/40 text-gold font-display font-extrabold text-lg mb-3">
+                                        26
+                                    </div>
+                                    <p data-i18n="heroImgFallbackTitle" class="font-display font-bold text-lg text-white">Bilde av Elsa («Elsa Ice racer.png»)</p>
+                                    <p data-i18n-html="heroImgFallbackText" class="text-xs sm:text-sm text-gray-200 mt-1.5 max-w-md mx-auto leading-relaxed">
+                                        Legg filen <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">Elsa Ice racer.png</code> i samme mappe som <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">index.html</code>, eller oppdater konstanten <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">ELSA_BILDE</code> i skriptet.
+                                    </p>
+                                </div>
+                                <div class="px-4 py-3 bg-brg-dark/95 border-t border-gold/15 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-200">
+                                    <span data-i18n="heroImgCaptionLeft" class="font-semibold text-gold-light">Elsa • Jaguar & Swallows Racing • Over 600 Nm</span>
+                                    <span data-i18n="heroImgCaptionRight">Høy mestring på kort tid • 100 % ideell drift</span>
+                                </div>
+                            </div>
+
+                            <!-- Nøkkelpunkter -->
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between bg-brg-dark/60 px-4 py-3 rounded-xl border border-white/5">
+                                    <span data-i18n="heroSurplusLabel" class="text-sm text-gray-200">Overskudd til formålet</span>
+                                    <span data-i18n="heroSurplusValue" class="font-display font-extrabold text-gold text-base">100 % til SFK.no</span>
+                                </div>
+                                <div class="flex items-center justify-between bg-brg-dark/60 px-4 py-3 rounded-xl border border-white/5">
+                                    <span data-i18n="heroRecipientLabel" class="text-sm text-gray-200">Hovedmottaker</span>
+                                    <span data-i18n="heroRecipientValue" class="font-display font-bold text-white text-sm">Prosjekt Superselma (963 064 853)</span>
+                                </div>
+                                <div class="pt-1">
+                                    <span data-i18n="heroArenasLabel" class="text-xs uppercase tracking-wider text-gold-light/80 block mb-2">Planlagte arenaer:</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <a href="https://www.facebook.com/solevannet" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brg-light hover:bg-brg-muted text-xs font-semibold text-white hover:text-gold border border-gold/25 hover:border-gold/60 transition-all">
+                                            <span data-i18n="arenaIce">Isbanekjøring (Hebbes Racing)</span>
+                                            <svg class="w-3.5 h-3.5 text-gold/80 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://arsunda.se/speed-weekend" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brg-light hover:bg-brg-muted text-xs font-semibold text-white hover:text-gold border border-gold/25 hover:border-gold/60 transition-all">
+                                            <span>Årsunda Speedweek</span>
+                                            <svg class="w-3.5 h-3.5 text-gold/80 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://gatebil.no/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brg-light hover:bg-brg-muted text-xs font-semibold text-white hover:text-gold border border-gold/25 hover:border-gold/60 transition-all">
+                                            <span>Gatebil</span>
+                                            <svg class="w-3.5 h-3.5 text-gold/80 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://oslomotorshow.no/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brg-light hover:bg-brg-muted text-xs font-semibold text-white hover:text-gold border border-gold/25 hover:border-gold/60 transition-all">
+                                            <span>Oslo Motor Show</span>
+                                            <svg class="w-3.5 h-3.5 text-gold/80 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. OM PROSJEKT ELSA -->
+        <section id="om-prosjektet" class="py-20 sm:py-24 bg-ivory">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span data-i18n="aboutBadge" class="text-xs font-bold uppercase tracking-widest text-brg-light bg-brg/10 px-3.5 py-1.5 rounded-full">
+                        Bakgrunn & Drift
+                    </span>
+                    <h2 data-i18n="aboutTitle" class="font-display font-extrabold text-3xl sm:text-4xl text-brg mt-4 tracking-tight">
+                        Når lidenskap for bil og motorsport blir til konkret hjelp
+                    </h2>
+                    <p data-i18n-html="aboutLead" class="text-base sm:text-lg text-slate-dark/80 mt-4 leading-relaxed">
+                        <strong>Prosjekt Elsa – for en lysere morgendag</strong> er en frittstående, ideell og ikke-kommersiell forening stiftet 19. november 2026 i Bærum kommune. Prosjektet har en planlagt første levetid på to år (2026–2028) med mulighet for forlengelse – og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)
+                    </p>
+                </div>
+
+                <!-- Minimale kostnader & dugnadsdrift -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 lg:p-12 shadow-soft border border-brg/10 mb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <h3 data-i18n="lowCostTitle" class="font-display font-bold text-2xl text-brg">
+                                Minimale kostnader – styreleder, dugnadstimer og reell effekt
+                            </h3>
+                            <p data-i18n-html="lowCostP1" class="text-slate-dark/85 leading-relaxed">
+                                I Prosjekt Elsa holdes kostnadene nede ved at bilen holdes og driftes av meg som styreleder (<strong>Theo A. F. Y. Lindholm</strong>) og gjennom <strong>dugnadstimer</strong>. Jeg eier raserbilen («Elsa»), verkstedet og utstyret personlig, og låner dette ut til foreningen <strong>vederlagsfritt og uten heftelser eller betingelser</strong> frem til den dagen foreningen opphører.
+                            </p>
+                            <p data-i18n="lowCostP2" class="text-slate-dark/85 leading-relaxed">
+                                Eventuell verkstedtid kan leies av foreningen til kostpris. Med dugnadstimer, engasjement og lav drift går midlene dit de gjør mest nytte – og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)
+                            </p>
+                        </div>
+                        <div class="lg:col-span-5 bg-brg rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-bl-full"></div>
+                            <p data-i18n="promiseLabel" class="text-gold font-display font-bold text-sm uppercase tracking-wider mb-2">Vårt løfte</p>
+                            <blockquote data-i18n="promiseQuote" class="font-display font-bold text-xl sm:text-2xl leading-snug text-white mb-4">
+                                «Hver eneste krone i overskudd fra foreningens innsamlinger og sponsorater skal gå uavkortet til å skape lyspunkter for syke barn.»
+                            </blockquote>
+                            <div class="flex items-center gap-3 pt-2 border-t border-gold/20 text-sm text-gold-light">
+                                <span data-i18n="promiseStatute">Vedtektsfestet i § 2 og § 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 kjerneverdier -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-brg/10 hover:border-gold transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brg text-gold flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3 data-i18n="pillar1Title" class="font-display font-bold text-xl text-brg mb-3">Styreleder, dugnad & lav drift</h3>
+                        <p data-i18n="pillar1Text" class="text-slate-dark/80 text-sm leading-relaxed">
+                            Bilen holdes og driftes av styreleder og gjennom dugnadstimer, med gratis utlån av bil, verksted og utstyr uten heftelser til foreningen opphører. Vi holder kostnadene nede og sørger for at vi har det gøy underveis i innsamlingen for alle som bidrar :)
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-brg/10 hover:border-gold transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brg text-gold flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 data-i18n="pillar2Title" class="font-display font-bold text-xl text-brg mb-3">Motorsport & Opplevelser</h3>
+                        <p data-i18n="pillar2Text" class="text-slate-dark/80 text-sm leading-relaxed">
+                            Gjennom isbanekjøring om vinteren, Årsunda Speedweek og utstillinger på Gatebil og Oslo Motor Show skaper vi engasjement, mestring og gode opplevelser for saken.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-brg/10 hover:border-gold transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brg text-gold flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 data-i18n="pillar3Title" class="font-display font-bold text-xl text-brg mb-3">Full åpenhet & Revisjon</h3>
+                        <p data-i18n="pillar3Text" class="text-slate-dark/80 text-sm leading-relaxed">
+                            Foreningen har egen bankkonto atskilt fra privatøkonomi. Alle gaver, sponsorinntekter og bilag bokføres ryddig og revideres av valgt revisor Rolf Lindholm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FORMÅLET: SFK.NO – PROSJEKT SUPERSELMA & DONASJONSKALKULATOR -->
+        <section id="superselma" class="py-20 sm:py-24 bg-brg text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- Venstre informasjon om formålet -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div data-i18n="purposeBadge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/15 border border-gold/40 text-gold text-xs font-bold uppercase tracking-wider">
+                            Hovedmottaker av overskuddet
+                        </div>
+                        <h2 data-i18n-html="purposeTitle" class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+                            SFK.no – Prosjekt <span class="text-gold">Superselma</span>
+                        </h2>
+                        <p data-i18n-html="purposeP1" class="text-gray-200 text-base sm:text-lg leading-relaxed">
+                            Alt overskudd fra Prosjekt Elsa skal gå til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> – og dersom foreningen finner det passende, kan også andre formål som støtter syke barn og andre vurderes.
+                        </p>
+                        <p data-i18n="purposeP2" class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                            Prosjekt Superselma bidrar til lyspunkter, pusterom og gode opplevelser for barn som er rammet av kreft og deres familier når hverdagen er preget av sykdom og behandling.
+                        </p>
+
+                        <div class="bg-brg-dark/80 border border-gold/25 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <span data-i18n="recipientCardLabel" class="text-xs text-gold uppercase tracking-wider font-semibold block">Mottakerorganisasjon</span>
+                                <span data-i18n="recipientCardName" class="font-display font-bold text-white text-base">Støtteforeningen for kreftrammede (SFK.no)</span>
+                                <span data-i18n="recipientCardMeta" class="text-xs text-gray-400 block mt-0.5">Prosjekt Superselma • Org.nr. 963 064 853</span>
+                            </div>
+                            <a href="https://sfk.no" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light shrink-0">
+                                <span data-i18n="visitSfk">Besøk SFK.no</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Høyre interaktiv donasjons- og effektkort -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white text-slate-dark rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border-2 border-gold/40">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <h3 data-i18n="calcTitle" class="font-display font-extrabold text-2xl text-brg">Gi et bidrag til saken</h3>
+                                    <p data-i18n="calcSubtitle" class="text-sm text-slate-dark/70 mt-1">Velg et beløp og se hvordan støtten bidrar • Org.nr. 963 064 853</p>
+                                </div>
+                                <div class="w-11 h-11 rounded-full bg-gold/20 text-brg flex items-center justify-center font-display font-extrabold" aria-hidden="true">
+                                    ♥
+                                </div>
+                            </div>
+
+                            <!-- Hurtigvalg av beløp -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4" id="donation-presets">
+                                <button type="button" data-amount="100" class="preset-btn py-3 px-4 rounded-xl border-2 border-brg/15 font-display font-bold text-brg hover:border-brg transition-all cursor-pointer">
+                                    <span class="amount-num">100</span> <span class="currency-unit">kr</span>
+                                </button>
+                                <button type="button" data-amount="250" class="preset-btn py-3 px-4 rounded-xl border-2 border-brg bg-brg text-gold font-display font-bold transition-all cursor-pointer">
+                                    <span class="amount-num">250</span> <span class="currency-unit">kr</span>
+                                </button>
+                                <button type="button" data-amount="500" class="preset-btn py-3 px-4 rounded-xl border-2 border-brg/15 font-display font-bold text-brg hover:border-brg transition-all cursor-pointer">
+                                    <span class="amount-num">500</span> <span class="currency-unit">kr</span>
+                                </button>
+                                <button type="button" data-amount="1000" class="preset-btn py-3 px-4 rounded-xl border-2 border-brg/15 font-display font-bold text-brg hover:border-brg transition-all cursor-pointer">
+                                    <span class="amount-num">1 000</span> <span class="currency-unit">kr</span>
+                                </button>
+                            </div>
+
+                            <!-- Valgfritt beløp -->
+                            <div class="mb-6">
+                                <label data-i18n="customAmountLabel" for="custom-amount" class="block text-xs font-semibold uppercase tracking-wider text-slate-dark/70 mb-1.5">
+                                    Eller skriv valgfritt beløp (NOK)
+                                </label>
+                                <div class="relative">
+                                    <input type="number" id="custom-amount" min="10" step="10" value="250" class="w-full px-4 py-3.5 rounded-xl border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none font-display font-bold text-lg text-brg" placeholder="Skriv beløp...">
+                                    <span class="currency-unit absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-dark/50">NOK</span>
+                                </div>
+                            </div>
+
+                            <!-- Dynamisk effektbeskrivelse -->
+                            <div class="bg-ivory rounded-2xl p-4 sm:p-5 border border-brg/10 mb-6">
+                                <div class="flex items-start gap-3.5">
+                                    <div class="w-9 h-9 rounded-lg bg-gold/25 text-brg-dark flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold uppercase tracking-wider text-brg-light"><span data-i18n="impactPrefix">Din effekt</span> (<span id="impact-amount-label">250 kr</span>)</p>
+                                        <p id="impact-description" class="text-sm text-slate-dark/85 mt-1 leading-relaxed">
+                                            Bidrar direkte til hyggelige pusterom, kinobilletter eller små overraskelser for et kreftsykt barn og søsken under behandling.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" onclick="openDonationModal()" class="w-full bg-brg hover:bg-brg-light text-gold font-display font-bold text-base py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2.5 cursor-pointer">
+                                <span data-i18n="calcCtaBtn">Gå videre til Vipps / Kontonummer</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. BILEN ELSA & SESONGPLAN (2026–2028) -->
+        <section id="bilen-lopet" class="py-20 sm:py-24 bg-ivory">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-14">
+                    <span data-i18n="carBadge" class="text-xs font-bold uppercase tracking-widest text-brg-light bg-brg/10 px-3.5 py-1.5 rounded-full">
+                        Prosjektbilen & Veikart
+                    </span>
+                    <h2 data-i18n="carTitle" class="font-display font-extrabold text-3xl sm:text-4xl text-brg mt-4 tracking-tight">
+                        Bilen «Elsa» & Sesongplan 2026–2028
+                    </h2>
+                    <p data-i18n-html="carLead" class="text-base sm:text-lg text-slate-dark/80 mt-4 leading-relaxed">
+                        Bilen er valgt for å skille seg ut og bygger på ekte racingarv fra <strong>Jaguar</strong> og <strong>Swallows Racing</strong>. Med <strong>over 600 Nm</strong> dreiemoment garanterer den en morsom og fartsfylt opplevelse med høy grad av mestring på kort tid – både på isbane, under <strong>Årsunda Speedweek</strong> og når den vises frem på <strong>Gatebil</strong> og <strong>Oslo Motor Show</strong>.
+                    </p>
+                </div>
+
+                <!-- Fremtredende bilpresentasjon av Elsa -->
+                <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-soft border border-brg/10 mb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 rounded-2xl overflow-hidden bg-brg-dark border border-brg/15">
+                            <img
+                                id="bilde-elsa-galleri"
+                                class="bilde-elsa w-full h-64 sm:h-80 lg:h-96 object-cover block"
+                                alt="Elsa på isen – Jaguar X300 med startnummer 26, racingarv fra Jaguar og Swallows Racing og SuperSelma-merking"
+                                onerror="handleElsaImageError(this, 'fallback-elsa-galleri')"
+                            >
+                            <div id="fallback-elsa-galleri" class="hidden p-8 sm:p-12 text-center bg-gradient-to-br from-brg-dark via-brg to-brg-light text-white">
+                                <span data-i18n="carImgFallbackBadge" class="inline-block px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase tracking-wider mb-3">
+                                    Bildeplassholder • Elsa
+                                </span>
+                                <h3 data-i18n="carImgFallbackTitle" class="font-display font-extrabold text-xl sm:text-2xl">Elsa – Jaguar & Swallows Racing</h3>
+                                <p data-i18n-html="carImgFallbackText" class="text-sm text-gray-200 mt-2 max-w-lg mx-auto leading-relaxed">
+                                    Bildet styres av <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">ELSA_BILDE</code> (standard: <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">"Elsa Ice racer.png"</code>). Plasser bildefilen ved siden av <code class="px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono">index.html</code> eller bytt filbanen i skriptet for å vise bildet direkte.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-5">
+                            <div data-i18n="carHeritageBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brg/10 text-brg text-xs font-bold uppercase tracking-wider">
+                                Eksklusiv racingarv
+                            </div>
+                            <h3 data-i18n="carSpotlightTitle" class="font-display font-extrabold text-2xl sm:text-3xl text-brg leading-tight">
+                                Bygget for å skille seg ut og gi rask mestring
+                            </h3>
+                            <p data-i18n-html="carSpotlightText" class="text-slate-dark/85 text-sm sm:text-base leading-relaxed">
+                                «Elsa» kombinerer ekte racingarv fra <strong>Jaguar</strong> og <strong>Swallows Racing</strong> med <strong>over 600 Nm</strong> som gir en morsom, fartsfylt opplevelse med høy grad av mestring på kort tid. Bilen driftes av styreleder og gjennom dugnadstimer, mens alle er med for å skape lysglimt og støtte til Superselma – og ha det gøy underveis :)
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <div class="border-l-4 border-brg pl-4 py-1">
+                                    <span data-i18n="specHeritageLabel" class="text-xs uppercase tracking-wider text-slate-dark/60 font-semibold">Racingarv</span>
+                                    <p data-i18n="specHeritageValue" class="font-display font-bold text-brg text-base mt-0.5">Jaguar & Swallows Racing</p>
+                                </div>
+                                <div class="border-l-4 border-gold pl-4 py-1">
+                                    <span data-i18n="specTorqueLabel" class="text-xs uppercase tracking-wider text-slate-dark/60 font-semibold">Dreiemoment</span>
+                                    <p data-i18n="specTorqueValue" class="font-display font-bold text-brg text-base mt-0.5">Over 600 Nm</p>
+                                </div>
+                                <div class="border-l-4 border-brg pl-4 py-1">
+                                    <span data-i18n="specOpsLabel" class="text-xs uppercase tracking-wider text-slate-dark/60 font-semibold">Drift & Utlån</span>
+                                    <p data-i18n="specOpsValue" class="font-display font-bold text-brg text-base mt-0.5">Gratis utlån & dugnad</p>
+                                </div>
+                                <div class="border-l-4 border-gold pl-4 py-1">
+                                    <span data-i18n="specPeriodLabel" class="text-xs uppercase tracking-wider text-slate-dark/60 font-semibold">Prosjektperiode</span>
+                                    <p data-i18n="specPeriodValue" class="font-display font-bold text-brg text-base mt-0.5">2 år (2026–2028+)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 faser i sesongplanen -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-soft border border-brg/10 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span data-i18n="phase1Tag" class="px-3 py-1 rounded-lg bg-brg text-gold font-display font-bold text-xs">Fase 1</span>
+                                <span data-i18n="phase1When" class="text-xs font-bold text-brg-light">Høst / Vinter 2026</span>
+                            </div>
+                            <h3 data-i18n="phase1Title" class="font-display font-bold text-lg text-brg mb-2">Stiftelse & Klargjøring</h3>
+                            <p data-i18n="phase1Desc" class="text-sm text-slate-dark/80 leading-relaxed">
+                                Stiftelse av foreningen i Bærum, registrering i Brønnøysundregistrene samt klargjøring av Elsa gjennom styreleders innsats og dugnadstimer med lave kostnader.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-brg/10 flex items-center gap-2 text-xs font-semibold text-brg">
+                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                            <span data-i18n="phase1Status">Pågående milepæl</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-soft border border-brg/10 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span data-i18n="phase2Tag" class="px-3 py-1 rounded-lg bg-brg/10 text-brg font-display font-bold text-xs">Fase 2</span>
+                                <span data-i18n="phase2When" class="text-xs font-bold text-brg-light">Vinter 2027</span>
+                            </div>
+                            <h3 data-i18n="phase2Title" class="font-display font-bold text-lg text-brg mb-2">Isbanekjøring & Årsunda Speedweek</h3>
+                            <p data-i18n-html="phase2Desc" class="text-sm text-slate-dark/80 leading-relaxed">
+                                Planlagt deltakelse på isbane og <strong>Årsunda Speedweek</strong> – med over 600 Nm, høy mestring på kort tid og fartsfylte opplevelser som samler inn midler til saken.
+                            </p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <a href="https://www.facebook.com/solevannet" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-xs font-semibold text-brg hover:text-brg-light underline underline-offset-2">
+                                    <span data-i18n="linkHebbesIce">Hebbes Racing (Facebook)</span>
+                                    <svg class="w-3.5 h-3.5 text-gold-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                                <span class="text-slate-dark/30">•</span>
+                                <a href="https://arsunda.se/speed-weekend" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-xs font-semibold text-brg hover:text-brg-light underline underline-offset-2">
+                                    <span data-i18n="linkArsundaOfficial">Årsunda Speedweek (arsunda.se)</span>
+                                    <svg class="w-3.5 h-3.5 text-gold-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-brg/10 flex items-center gap-2 text-xs font-semibold text-slate-dark/60">
+                            <span class="w-2 h-2 rounded-full bg-brg-light"></span>
+                            <span data-i18n="phasePlannedStatus">Planlagt høydepunkt</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-soft border border-brg/10 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span data-i18n="phase3Tag" class="px-3 py-1 rounded-lg bg-brg/10 text-brg font-display font-bold text-xs">Fase 3</span>
+                                <span data-i18n="phase3When" class="text-xs font-bold text-brg-light">Sommer / Høst 2027</span>
+                            </div>
+                            <h3 data-i18n="phase3Title" class="font-display font-bold text-lg text-brg mb-2">Gatebil & Oslo Motor Show</h3>
+                            <p data-i18n-html="phase3Desc" class="text-sm text-slate-dark/80 leading-relaxed">
+                                Planlagt visning og publikumsmøter på <strong>Gatebil</strong> og <strong>Oslo Motor Show</strong>, der racingarven fra Jaguar og Swallows Racing skaper blikkfang for Superselma.
+                            </p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <a href="https://gatebil.no/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-xs font-semibold text-brg hover:text-brg-light underline underline-offset-2">
+                                    <span>Gatebil.no</span>
+                                    <svg class="w-3.5 h-3.5 text-gold-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                                <span class="text-slate-dark/30">•</span>
+                                <a href="https://oslomotorshow.no/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-xs font-semibold text-brg hover:text-brg-light underline underline-offset-2">
+                                    <span>Oslo Motor Show</span>
+                                    <svg class="w-3.5 h-3.5 text-gold-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-brg/10 flex items-center gap-2 text-xs font-semibold text-slate-dark/60">
+                            <span class="w-2 h-2 rounded-full bg-brg-light"></span>
+                            <span data-i18n="phase3Status">Planlagt utstilling</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-soft border border-brg/10 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span data-i18n="phase4Tag" class="px-3 py-1 rounded-lg bg-brg/10 text-brg font-display font-bold text-xs">Fase 4</span>
+                                <span class="text-xs font-bold text-brg-light">2027 – 2028</span>
+                            </div>
+                            <h3 data-i18n="phase4Title" class="font-display font-bold text-lg text-brg mb-2">Videre innsamling & Overføring</h3>
+                            <p data-i18n="phase4Desc" class="text-sm text-slate-dark/80 leading-relaxed">
+                                Fortsatt kjøring, Årsunda Speedweek, Gatebil og Oslo Motor Show med løpende overføring av overskudd til SFK.no – prosjekt Superselma, samtidig som alle som bidrar har det gøy underveis :)
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-brg/10 flex items-center gap-2 text-xs font-semibold text-slate-dark/60">
+                            <span class="w-2 h-2 rounded-full bg-gold"></span>
+                            <span data-i18n="phase4Status">Reell effekt for saken</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. OPPDELT SPONSOR- & STØTTESJEKSJON: GI SPONSING / BESTILL TEAMBUILDING -->
+        <section id="sponsor" class="py-20 sm:py-24 bg-white border-t border-brg/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-10">
+                    <span data-i18n="sponsorBadge" class="text-xs font-bold uppercase tracking-widest text-brg-light bg-brg/10 px-3.5 py-1.5 rounded-full">
+                        Gi sponsing & Bestill teambuilding
+                    </span>
+                    <h2 data-i18n="sponsorSectionTitle" class="font-display font-extrabold text-3xl sm:text-4xl text-brg mt-4 tracking-tight">
+                        Gi sponsing eller bestill teambuilding på isen
+                    </h2>
+                    <p data-i18n-html="sponsorSectionLead" class="text-slate-dark/85 text-base sm:text-lg mt-3 leading-relaxed">
+                        Vi tilbyr ikke logoprofilering eller branding på bilen. Velg mellom å <strong>gi sponsing</strong> (enten direkte til Prosjekt Elsa eller direkte til SFK.no – prosjekt Superselma) eller å <strong>bestille teambuilding på isen</strong> med Elsa – der over 600 Nm og racingarv fra Jaguar og Swallows Racing gir rask mestring, <strong>alle får lysglimt</strong>, <strong>Superselma får overskuddet</strong>, og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)
+                    </p>
+                </div>
+
+                <!-- Fanevelger for å bytte mellom Gi sponsing og Bestill teambuilding -->
+                <div class="flex flex-wrap gap-3 mb-8" role="tablist" aria-label="Velg mellom Gi sponsing og Bestill teambuilding">
+                    <button type="button" id="tab-sponsing" role="tab" aria-selected="false" onclick="selectSponsorTab('sponsing')" class="sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg/20 bg-ivory text-brg hover:border-brg transition-all cursor-pointer">
+                        <span data-i18n="tabGiveSponsor">Gi sponsing</span>
+                    </button>
+                    <button type="button" id="tab-teambuilding" role="tab" aria-selected="true" onclick="selectSponsorTab('teambuilding')" class="sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg bg-brg text-gold shadow-lg transition-all cursor-pointer">
+                        <span data-i18n="tabBookTeam">Bestill teambuilding</span>
+                    </button>
+                </div>
+
+                <!-- To tydelige spor side om side -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+
+                    <!-- Spor A: Gi sponsing (direkte til Prosjekt Elsa eller direkte til SFK.no) -->
+                    <div id="card-gi-sponsing" class="lg:col-span-6 bg-ivory rounded-3xl p-6 sm:p-8 border-2 border-brg/15 shadow-soft flex flex-col justify-between transition-all">
+                        <div class="space-y-4">
+                            <div data-i18n="track1Badge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brg/10 text-brg text-xs font-bold uppercase tracking-wider">
+                                Spor 1 • Gi sponsing / støtte
+                            </div>
+                            <h3 data-i18n="track1Title" class="font-display font-extrabold text-2xl text-brg">
+                                Gi sponsing – hos oss eller direkte hos SFK.no
+                            </h3>
+                            <p data-i18n-html="track1Desc" class="text-sm sm:text-base text-slate-dark/85 leading-relaxed">
+                                Uten branding på bilen går fokuset til å støtte formålet. Du kan gå rett til donasjons- og Vipps-informasjon hos <strong>Prosjekt Elsa</strong>, gå direkte til <strong>SFK.no – prosjekt Superselma (org.nr. 963 064 853)</strong>, eller klargjøre en sponsorhenvendelse under.
+                            </p>
+
+                            <div class="space-y-3 pt-2">
+                                <div class="bg-white rounded-2xl p-4 border border-brg/15">
+                                    <p data-i18n="track1Option1Title" class="font-display font-bold text-brg text-sm">1. Doner / støtt hos Prosjekt Elsa</p>
+                                    <p data-i18n="track1Option1Desc" class="text-xs sm:text-sm text-slate-dark/80 mt-1">
+                                        Åpne donasjonsvinduet med Vipps- og støtteinfo for Prosjekt Elsa – alt overskudd går til SFK.no – prosjekt Superselma (org.nr. 963 064 853).
+                                    </p>
+                                    <button type="button" onclick="openDonationModal()" class="mt-3 inline-flex items-center gap-2 bg-brg hover:bg-brg-light text-gold font-display font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors cursor-pointer">
+                                        <span data-i18n="track1Option1Btn">Gå til donasjon hos Prosjekt Elsa</span>
+                                    </button>
+                                </div>
+
+                                <div class="bg-white rounded-2xl p-4 border border-brg/15">
+                                    <p data-i18n="track1Option2Title" class="font-display font-bold text-brg text-sm">2. Gi direkte til SFK.no – prosjekt Superselma</p>
+                                    <p data-i18n-html="track1Option2Desc" class="text-xs sm:text-sm text-slate-dark/80 mt-1">
+                                        Gå direkte til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> og merk bidraget med <em>«Prosjekt Elsa»</em>.
+                                    </p>
+                                    <a href="https://sfk.no" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-brg-dark font-display font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors">
+                                        <span data-i18n="track1Option2Btn">Gå direkte til SFK.no (Superselma)</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-brg/10 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-dark/75">
+                            <span data-i18n="noBrandingLabel" class="font-semibold text-brg">Ingen branding på bilen</span>
+                            <span data-i18n="surplusToSfkLabel">Overskudd til SFK.no (963 064 853)</span>
+                        </div>
+                    </div>
+
+                    <!-- Spor B: Bestill teambuilding på isen -->
+                    <div id="card-bestill-teambuilding" class="lg:col-span-6 bg-brg rounded-3xl p-6 sm:p-8 text-white shadow-xl border-2 border-gold/50 flex flex-col justify-between transition-all">
+                        <div class="space-y-4">
+                            <div data-i18n="track2Badge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/20 border border-gold/40 text-gold text-xs font-bold uppercase tracking-wider">
+                                Spor 2 • Bestill teambuilding på isen
+                            </div>
+                            <h3 data-i18n="track2Title" class="font-display font-extrabold text-2xl text-white">
+                                Bestill teambuilding på isen med Elsa
+                            </h3>
+                            <p data-i18n-html="track2Desc" class="text-sm sm:text-base text-gray-200 leading-relaxed">
+                                Gi bedriften eller teamet en morsom og fartsfylt <strong>teambuilding på isen</strong> med Elsa – valgt for å skille seg ut med ekte racingarv fra Jaguar og Swallows Racing og <strong>over 600 Nm</strong> som gir høy grad av mestring på kort tid. <strong>Alle får lysglimt</strong>, <strong>Superselma får overskuddet</strong>, og vi skal ha det gøy underveis i innsamlingen :)
+                            </p>
+
+                            <ul class="space-y-3 text-sm text-gray-200 pt-1">
+                                <li class="flex items-start gap-3">
+                                    <span class="w-5 h-5 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5 font-bold" aria-hidden="true">✓</span>
+                                    <span data-i18n-html="track2Bullet1"><strong>Teambuilding på isen:</strong> Morsom og fartsfylt opplevelse der over 600 Nm gir høy grad av mestring på kort tid.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-5 h-5 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5 font-bold" aria-hidden="true">✓</span>
+                                    <span data-i18n-html="track2Bullet2"><strong>Alle får lysglimt:</strong> En minnerik og energigivende opplevelse for teamet samtidig som det skapes lyspunkter for syke barn.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-5 h-5 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5 font-bold" aria-hidden="true">✓</span>
+                                    <span data-i18n-html="track2Bullet3"><strong>Superselma får overskuddet:</strong> Uten branding på bilen går fokuset til opplevelsen og til at overskuddet tilfaller SFK.no – prosjekt Superselma (org.nr. 963 064 853).</span>
+                                </li>
+                            </ul>
+
+                            <div class="pt-2">
+                                <button type="button" onclick="focusBookingForm('teambuilding')" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-brg-dark font-display font-bold text-sm px-5 py-3 rounded-xl shadow-gold transition-colors cursor-pointer">
+                                    <span data-i18n="track2ScrollBtn">Bestill teambuilding i skjemaet under</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-gold/20">
+                            <span data-i18n="track2FooterCaption" class="text-xs uppercase tracking-wider text-gold-light block mb-3">Uten branding på bilen • Fokus på opplevelse & effekt:</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-display font-bold">
+                                <div data-i18n="pillIceTeam" class="bg-brg-dark/80 border border-gold/30 rounded-xl p-2.5 text-center text-gold">Teambuilding på isen</div>
+                                <div data-i18n="pillGlimpses" class="bg-brg-dark/80 border border-gold/30 rounded-xl p-2.5 text-center text-white">Alle får lysglimt</div>
+                                <div data-i18n="pillSuperselma" class="bg-brg-dark/80 border border-gold/30 rounded-xl p-2.5 text-center text-white">Superselma får overskuddet</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tilpasset skjema & henvendelsesgenerator -->
+                <div id="sponsor-skjema-boks" class="max-w-4xl mx-auto">
+                    <div class="bg-ivory rounded-3xl p-6 sm:p-8 lg:p-10 border border-brg/15 shadow-soft">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                            <div>
+                                <span id="form-mode-badge" class="inline-block text-xs font-bold uppercase tracking-widest text-brg-light bg-brg/10 px-3 py-1 rounded-full mb-2">
+                                    Bestill teambuilding
+                                </span>
+                                <h3 id="form-heading" class="font-display font-extrabold text-2xl text-brg">
+                                    Bestill teambuilding på isen
+                                </h3>
+                                <p id="form-subtext" class="text-sm text-slate-dark/75 mt-1">
+                                    Klargjør en henvendelse om teambuilding på isen med Elsa eller om å gi sponsing – uten branding på bilen, der alle får lysglimt og Superselma får overskuddet.
+                                </p>
+                            </div>
+                            <div class="flex rounded-xl bg-white p-1 border border-brg/15 shrink-0">
+                                <button type="button" id="toggle-mode-sponsing" onclick="selectSponsorTab('sponsing')" class="px-3.5 py-2 rounded-lg text-xs font-display font-bold text-brg hover:bg-ivory transition-colors cursor-pointer">
+                                    <span data-i18n="toggleGiveSponsor">Gi sponsing</span>
+                                </button>
+                                <button type="button" id="toggle-mode-teambuilding" onclick="selectSponsorTab('teambuilding')" class="px-3.5 py-2 rounded-lg text-xs font-display font-bold bg-brg text-gold transition-colors cursor-pointer">
+                                    <span data-i18n="toggleBookTeam">Bestill teambuilding</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <form id="sponsor-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label data-i18n="formCompanyLabel" for="company-name" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Bedrift / Organisasjon / Navn *</label>
+                                    <input type="text" id="company-name" required class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="Bedriftens navn eller ditt navn">
+                                </div>
+                                <div>
+                                    <label data-i18n="formPersonLabel" for="contact-person" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Kontaktperson *</label>
+                                    <input type="text" id="contact-person" required class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="Ditt navn">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label data-i18n="formEmailLabel" for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">E-post *</label>
+                                    <input type="email" id="contact-email" required class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="navn@bedrift.no">
+                                </div>
+                                <div>
+                                    <label data-i18n="formPhoneLabel" for="contact-phone" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Telefon</label>
+                                    <input type="tel" id="contact-phone" class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="+47 000 00 000">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div id="team-size-wrapper">
+                                    <label data-i18n="formTeamSizeLabel" for="team-size" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Antall deltakere i teamet</label>
+                                    <input type="number" id="team-size" min="1" value="8" class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="F.eks. 8">
+                                </div>
+                                <div>
+                                    <label data-i18n="formTrackLabel" for="sponsor-tier" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Valgt spor / opplegg</label>
+                                    <select id="sponsor-tier" class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm font-medium">
+                                        <option id="tier-opt-team" value="Bestill teambuilding på isen med Elsa (over 600 Nm, lysglimt & overskudd til Superselma)">Bestill teambuilding på isen med Elsa (over 600 Nm, lysglimt & overskudd til Superselma)</option>
+                                        <option id="tier-opt-sponsor" value="Gi sponsing der overskuddet går til SFK.no – prosjekt Superselma (org.nr. 963 064 853)">Gi sponsing der overskuddet går til SFK.no – prosjekt Superselma (org.nr. 963 064 853)</option>
+                                        <option id="tier-opt-combo" value="Kombinasjon av teambuilding på isen og sponsing til barnekreftsaken">Kombinasjon av teambuilding på isen og sponsing til barnekreftsaken</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label id="message-label" for="sponsor-message" class="block text-xs font-bold uppercase tracking-wider text-brg mb-1.5">Ønsker for teambuilding på isen eller melding</label>
+                                <textarea id="sponsor-message" rows="3" class="w-full px-4 py-3 rounded-xl bg-white border border-brg/20 focus:border-brg focus:ring-2 focus:ring-brg/20 outline-none text-sm" placeholder="Fortell kort om teamet deres, ønsket periode på isen eller hvordan dere vil bidra..."></textarea>
+                            </div>
+
+                            <button id="submit-sponsor-btn" type="submit" class="w-full bg-brg hover:bg-brg-light text-gold font-display font-bold text-base py-4 px-6 rounded-xl shadow-lg transition-all cursor-pointer">
+                                Klargjør bestilling av teambuilding
+                            </button>
+                        </form>
+
+                        <!-- Ferdig oppsummert henvendelse -->
+                        <div id="sponsor-confirmation" class="hidden mt-6 bg-white border-2 border-gold rounded-2xl p-5 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center gap-2 text-sm font-display font-bold text-brg">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-600"></span>
+                                    <span data-i18n="formReadyTitle">Henvendelse klar!</span>
+                                </span>
+                                <button type="button" onclick="copySponsorSummary()" class="text-xs font-bold bg-brg text-gold px-3 py-1.5 rounded-lg hover:bg-brg-light transition-colors cursor-pointer">
+                                    <span data-i18n="copyBtn">Kopier tekst</span>
+                                </button>
+                            </div>
+                            <p data-i18n="formReadyIntro" class="text-xs text-slate-dark/75">
+                                Takk for engasjementet! Under finner du en ferdig oppsummert henvendelse du kan kopiere eller sende på e-post:
+                            </p>
+                            <pre id="sponsor-summary-text" class="bg-ivory p-3.5 rounded-xl text-xs text-slate-dark whitespace-pre-wrap font-sans border border-brg/10"></pre>
+                            <div class="flex flex-wrap gap-3 pt-1">
+                                <a id="mailto-sponsor-link" href="#" class="inline-flex items-center gap-2 bg-gold text-brg-dark font-display font-bold text-xs px-4 py-2.5 rounded-xl hover:bg-gold-light transition-colors">
+                                    <span data-i18n="openMailBtn">Åpne i e-postprogram</span>
+                                </a>
+                                <span id="copy-feedback" data-i18n="copiedFeedback" class="text-xs font-semibold text-brg-light self-center hidden">✓ Kopiert til utklippstavle!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5B. EGEN SEKSJON & FANEOVERSIKT FOR STØTTESPILLERE -->
+        <section id="stottespillere" class="py-20 sm:py-24 bg-ivory border-t border-brg/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                    <div class="max-w-3xl">
+                        <span data-i18n="supportersBadge" class="text-xs font-bold uppercase tracking-widest text-brg-light bg-brg/10 px-3.5 py-1.5 rounded-full">
+                            Støttespillere
+                        </span>
+                        <h2 data-i18n="supportersTitle" class="font-display font-extrabold text-3xl sm:text-4xl text-brg mt-4 tracking-tight">
+                            Våre støttespillere rundt prosjektet
+                        </h2>
+                        <p data-i18n="supportersIntro" class="text-slate-dark/85 text-base sm:text-lg mt-3 leading-relaxed">
+                            En oversikt over støttespillere og aktører knyttet til formålet, isbanekjøring, racingarv og fellesskapet rundt Prosjekt Elsa. Klikk på en fane eller et kort for å se mer informasjon.
+                        </p>
+                    </div>
+
+                    <!-- Visningsfane: Alle / Formål & is / Racingarv & familie -->
+                    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrer støttespillere">
+                        <button type="button" id="sup-filter-all" onclick="setSupporterFilter('all')" class="px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm bg-brg text-gold border-2 border-brg transition-colors cursor-pointer">
+                            <span data-i18n="supFilterAll">Alle støttespillere (7)</span>
+                        </button>
+                        <button type="button" id="sup-filter-purpose" onclick="setSupporterFilter('purpose')" class="px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-brg border-2 border-brg/15 hover:border-brg transition-colors cursor-pointer">
+                            <span data-i18n="supFilterPurpose">Formål & isbane</span>
+                        </button>
+                        <button type="button" id="sup-filter-heritage" onclick="setSupporterFilter('heritage')" class="px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-brg border-2 border-brg/15 hover:border-brg transition-colors cursor-pointer">
+                            <span data-i18n="supFilterHeritage">Racingarv & familie</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fanelinje med alle 7 støttespillere -->
+                <div class="flex flex-wrap gap-2.5 mb-8" role="tablist" aria-label="Støttespillere faner">
+                    <button type="button" data-supporter-key="sfk" onclick="selectSupporter('sfk')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg bg-brg text-gold transition-all cursor-pointer">
+                        SFK-prosjekt superselma
+                    </button>
+                    <button type="button" data-supporter-key="hebbes" onclick="selectSupporter('hebbes')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        Hebbes-isbane
+                    </button>
+                    <button type="button" data-supporter-key="norconsult" onclick="selectSupporter('norconsult')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        NOrsonsult
+                    </button>
+                    <button type="button" data-supporter-key="williams" onclick="selectSupporter('williams')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        Sir williams
+                    </button>
+                    <button type="button" data-supporter-key="sandberg" onclick="selectSupporter('sandberg')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        Sandberg classic
+                    </button>
+                    <button type="button" data-supporter-key="swallows" onclick="selectSupporter('swallows')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        swallows racing
+                    </button>
+                    <button type="button" data-supporter-key="lindholms" onclick="selectSupporter('lindholms')" class="supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer">
+                        The Lindholms
+                    </button>
+                </div>
+
+                <!-- Detaljert fanevisning for valgt støttespiller -->
+                <div id="supporter-detail-panel" class="bg-brg text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gold/30 mb-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-gold/20">
+                        <div>
+                            <span id="supporter-panel-tag" class="inline-block text-xs font-bold uppercase tracking-widest text-gold bg-gold/15 border border-gold/30 px-3 py-1 rounded-full">
+                                Hovedmottaker av overskudd
+                            </span>
+                            <h3 id="supporter-panel-title" class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-2">
+                                SFK-prosjekt superselma
+                            </h3>
+                        </div>
+                        <span id="supporter-panel-meta" class="text-xs sm:text-sm font-mono text-gold-light bg-brg-dark/70 px-3.5 py-2 rounded-xl border border-gold/20">
+                            SFK.no • Org.nr. 963 064 853
+                        </span>
+                    </div>
+                    <p id="supporter-panel-desc" class="text-sm sm:text-base text-gray-200 leading-relaxed mt-4 max-w-4xl">
+                        Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853) er hovedmottakeren som alt overskudd fra Prosjekt Elsa skal gå til for å skape lyspunkter for kreftsyke barn og deres familier.
+                    </p>
+                </div>
+
+                <!-- Rutenett med alle 7 støttespillere -->
+                <div id="supporters-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <article data-key="sfk" data-category="purpose" onclick="selectSupporter('sfk')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border-2 border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRolePurpose" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller / Mottaker</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">SFK-prosjekt superselma</h4>
+                            <p id="sup-card-sfk" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853), hovedmottaker av overskuddet.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="hebbes" data-category="purpose" onclick="selectSupporter('hebbes')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">Hebbes-isbane</h4>
+                            <p id="sup-card-hebbes" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støttespiller knyttet til isbanekjøring og fartsfylte opplevelser på isen.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="norconsult" data-category="purpose" onclick="selectSupporter('norconsult')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">NOrsonsult</h4>
+                            <p id="sup-card-norconsult" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støttespiller oppført blant aktørene rundt prosjektet.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="williams" data-category="heritage" onclick="selectSupporter('williams')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">Sir williams</h4>
+                            <p id="sup-card-williams" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støttespiller oppført i oversikten over støttespillere rundt Prosjekt Elsa.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="sandberg" data-category="heritage" onclick="selectSupporter('sandberg')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">Sandberg classic</h4>
+                            <p id="sup-card-sandberg" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støttespiller knyttet til klassisk bilkultur og miljøet rundt bilen.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="swallows" data-category="heritage" onclick="selectSupporter('swallows')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">swallows racing</h4>
+                            <p id="sup-card-swallows" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Støttespiller og del av racingarven som danner bakgrunnen for «Elsa».
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+
+                    <article data-key="lindholms" data-category="heritage" onclick="selectSupporter('lindholms')" class="supporter-card bg-white rounded-2xl p-6 shadow-soft border border-brg/10 hover:border-gold cursor-pointer transition-all hover:-translate-y-0.5 flex flex-col justify-between">
+                        <div>
+                            <span data-i18n="supCardRole" class="text-[11px] font-bold uppercase tracking-wider text-brg-light">Støttespiller</span>
+                            <h4 class="font-display font-bold text-lg text-brg mt-1">The Lindholms</h4>
+                            <p id="sup-card-lindholms" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                                Familien bak dugnad, drift og engasjementet rundt Prosjekt Elsa.
+                            </p>
+                        </div>
+                        <span data-i18n="supViewTab" class="mt-4 pt-3 border-t border-brg/10 text-xs font-semibold text-brg">Vis i fane →</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 6. STYRET, ÅPENHET & VEDTEKTER -->
+    <footer id="styret" class="bg-brg-dark text-white border-t border-gold/25">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brg-light border border-gold flex items-center justify-center">
+                            <svg class="w-5 h-5 text-gold" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M16 3L27 8V16C27 22.8 22.2 27.6 16 29C9.8 27.6 5 22.8 5 16V8L16 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M11 21L14.5 11H21L19.8 14H16.2L15.4 16.2H18.8L17.8 19H14.4L13.7 21H11Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-display font-extrabold text-lg text-white block leading-none">PROSJEKT ELSA</span>
+                            <span class="text-xs text-gold italic font-medium">Racingarv med reell effekt</span>
+                        </div>
+                    </div>
+                    <p data-i18n-html="footerAbout" class="text-sm text-gray-300 leading-relaxed">
+                        <strong>Prosjekt Elsa – for en lysere morgendag</strong> er en frittstående, partipolitisk nøytral og ideell forening med forretningsadresse i Bærum kommune. Stiftet 19. november 2026.
+                    </p>
+                    <div class="pt-2">
+                        <button type="button" onclick="openStatutesModal()" class="inline-flex items-center gap-2 text-sm font-display font-bold text-gold hover:text-gold-light border border-gold/40 bg-brg/60 px-4 py-2.5 rounded-xl transition-colors cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span data-i18n="openStatutesBtn">Les vedtekter & styringsmodell</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 data-i18n="footerBoardHeading" class="font-display font-bold text-sm uppercase tracking-widest text-gold">Styret & Kontroll</h4>
+                    <ul class="space-y-3 text-sm text-gray-200">
+                        <li class="flex justify-between border-b border-white/10 pb-2">
+                            <span data-i18n="footerChairLabel" class="text-gray-400">Styreleder:</span>
+                            <span class="font-semibold text-white">Theo A. F. Y. Lindholm</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/10 pb-2">
+                            <span data-i18n="footerMemberLabel" class="text-gray-400">Styremedlem:</span>
+                            <span class="font-semibold text-white">Jeanette Slåttun</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/10 pb-2">
+                            <span data-i18n="footerAuditorLabel" class="text-gray-400">Valgt revisor:</span>
+                            <span class="font-semibold text-white">Rolf Lindholm</span>
+                        </li>
+                        <li class="flex justify-between pb-1">
+                            <span data-i18n="footerFoundedLabel" class="text-gray-400">Kommune / Stiftet:</span>
+                            <span data-i18n="footerFoundedValue" class="font-semibold text-white">Bærum • 19.11.2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 data-i18n="footerRecipientHeading" class="font-display font-bold text-sm uppercase tracking-widest text-gold">Mottaker & Kontakt</h4>
+                    <div class="bg-brg/80 border border-gold/25 rounded-2xl p-4 space-y-2 text-sm">
+                        <p data-i18n="footerSurplusTitle" class="font-display font-bold text-white">Mottaker av alt overskudd:</p>
+                        <p data-i18n="footerSurplusOrg" class="text-gray-200">Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma)</p>
+                        <p class="text-xs text-gold font-mono">Org.nr.: 963 064 853</p>
+                    </div>
+                    <p data-i18n="footerContactNote" class="text-xs text-gray-400 leading-relaxed">
+                        Har du spørsmål om foreningen, å gi sponsing eller teambuilding på isen? Bruk skjemaet i sponsorseksjonen over.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+                <p data-i18n="footerCopyright">© 2026 Prosjekt Elsa – for en lysere morgendag. Alle rettigheter reservert.</p>
+                <p data-i18n="footerBottomRight" class="text-gold-light/80 font-medium">Ideell forening • Overskudd til SFK.no – prosjekt Superselma (org.nr. 963 064 853)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: DONASJON / VIPPS & SFK.NO -->
+    <div id="donation-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="donation-modal-title">
+        <div class="bg-white text-slate-dark rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-gold relative">
+            <button type="button" onclick="closeDonationModal()" aria-label="Lukk vindu" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-ivory hover:bg-brg/10 text-brg flex items-center justify-center font-bold cursor-pointer">
+                ✕
+            </button>
+
+            <div data-i18n="donModalBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brg/10 text-brg text-xs font-bold uppercase tracking-wider mb-3">
+                Støtt Prosjekt Elsa
+            </div>
+            <h3 id="donation-modal-title" data-i18n="donModalTitle" class="font-display font-extrabold text-2xl text-brg">Bidra til en lysere morgendag</h3>
+            <p data-i18n-html="donModalLead" class="text-sm text-slate-dark/80 mt-2 leading-relaxed">
+                Takk for at du vil være med og skape lyspunkter – og ha det gøy underveis i innsamlingen! Overskuddet går til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong>.
+            </p>
+
+            <div class="mt-6 space-y-4">
+                <div class="bg-ivory rounded-2xl p-4 border border-brg/15">
+                    <div class="flex items-center justify-between mb-1">
+                        <span data-i18n="donVippsHeading" class="text-xs font-bold uppercase tracking-wider text-brg-light">Vipps for lag og foreninger</span>
+                        <span data-i18n="donVippsBadge" class="text-[11px] font-semibold bg-gold/25 text-brg-dark px-2 py-0.5 rounded">Aktiveres ved reg.</span>
+                    </div>
+                    <p data-i18n="donVippsSearch" class="font-display font-extrabold text-lg text-brg">Søk opp: «Prosjekt Elsa»</p>
+                    <p data-i18n="donVippsNote" class="text-xs text-slate-dark/70 mt-1">Vipps-nummer publiseres her så snart foreningens organisasjonsnummer er klart i Brønnøysundregistrene.</p>
+                </div>
+
+                <div class="bg-ivory rounded-2xl p-4 border border-brg/15">
+                    <div class="flex items-center justify-between mb-1">
+                        <span data-i18n="donDirectHeading" class="text-xs font-bold uppercase tracking-wider text-brg-light">SFK.no – Prosjekt Superselma</span>
+                        <span class="text-[11px] font-semibold bg-brg text-gold px-2 py-0.5 rounded">Org.nr. 963 064 853</span>
+                    </div>
+                    <p data-i18n-html="donDirectDesc" class="text-sm text-slate-dark/85 mt-1">
+                        Du kan også støtte <strong>Støtteforeningen for kreftrammede (org.nr. 963 064 853)</strong> direkte via <a href="https://sfk.no" target="_blank" rel="noopener noreferrer" class="underline font-bold text-brg hover:text-brg-light">sfk.no</a> og merke bidraget med <em>«Prosjekt Elsa»</em>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button type="button" onclick="closeDonationModal()" data-i18n="closeBtn" class="w-full sm:w-auto bg-brg hover:bg-brg-light text-gold font-display font-bold text-sm px-6 py-3 rounded-xl transition-colors cursor-pointer">
+                    Lukk vindu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: VEDTEKTER & STYRINGSMODELL -->
+    <div id="statutes-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="statutes-modal-title">
+        <div class="bg-white text-slate-dark rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border-2 border-gold relative">
+            <div class="p-6 sm:p-8 border-b border-brg/10 flex items-center justify-between shrink-0">
+                <div>
+                    <span data-i18n="statutesSubtitle" class="text-xs font-bold uppercase tracking-wider text-brg-light">Vedtatt 19. november 2026 • Bærum</span>
+                    <h3 id="statutes-modal-title" data-i18n="statutesTitle" class="font-display font-extrabold text-xl sm:text-2xl text-brg mt-0.5">Vedtekter & Styringsmodell</h3>
+                </div>
+                <button type="button" onclick="closeStatutesModal()" aria-label="Lukk vedtekter" class="w-9 h-9 rounded-full bg-ivory hover:bg-brg/10 text-brg flex items-center justify-center font-bold cursor-pointer">
+                    ✕
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-5 text-sm text-slate-dark/85 leading-relaxed">
+                <div>
+                    <h4 data-i18n="s1Title" class="font-display font-bold text-brg text-base">§ 1 Navn og tilhørighet</h4>
+                    <p data-i18n-html="s1Body">Foreningens navn er <strong>Prosjekt Elsa – for en lysere morgendag</strong> (<em>Racingarv med reell effekt</em>). Foreningen er en frittstående, partipolitisk nøytral og ideell forening med forretningsadresse i Bærum kommune.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="s2Title" class="font-display font-bold text-brg text-base">§ 2 Formål og fordeling av overskudd</h4>
+                    <p data-i18n-html="s2Body">Foreningen samler inn gaver, sponsorbidrag og donasjoner til støtte for <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> gjennom motorsport-, isbane- og publikumsaktiviteter. Alt overskudd går til dette formålet (dersom foreningen finner det passende, kan andre formål som støtter syke barn og andre vurderes).</p>
+                </div>
+                <div>
+                    <h4 data-i18n="s34Title" class="font-display font-bold text-brg text-base">§ 3 & § 4 Medlemskap og Årsmøte</h4>
+                    <p data-i18n="s34Body">Nytt medlemskap krever styrets godkjenning. Medlemsbasen består av ordinære medlemmer og stemmeberettigede medlemmer, der alle i styret har stemmerett. Ordinært årsmøte avholdes innen utgangen av desember hvert år (med unntak av stiftelsesåret 2026) og behandler årsberetning, regnskap, budsjett og årlig aktivitetsplan.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="s5Title" class="font-display font-bold text-brg text-base">§ 5 Styret</h4>
+                    <p data-i18n-html="s5Body">Styret sitter permanent og består av to medlemmer: <strong>Theo A. F. Y. Lindholm</strong> (styreleder) og <strong>Jeanette Slåttun</strong> (styremedlem). Sittende styre må finne nytt styre før medlemmer går av eller foreningen oppløses.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="s6Title" class="font-display font-bold text-brg text-base">§ 6 Eiendeler, utlån, verkstedleie og revisjon</h4>
+                    <p data-i18n-html="s6Body">Theo A. F. Y. Lindholm er personlig eier av alle eksisterende eiendeler og midler ved stiftelsen (herunder raserbil, verksted og utstyr). Disse lånes ut til foreningen gratis og uten heftelser eller betingelser frem til den dagen foreningen opphører. Verkstedtid kan leies av foreningen til kostpris. Regnskapet revideres av valgt revisor <strong>Rolf Lindholm</strong>.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="s78Title" class="font-display font-bold text-brg text-base">§ 7 & § 8 Vedtektsendringer og Oppløsning</h4>
+                    <p data-i18n="s78Body">Vedtektsendringer krever 2/3 flertall på årsmøte. Ved oppløsning skal alle foreningens gjenværende overskudd tilfalle SFK.no (prosjekt Superselma, org.nr. 963 064 853) eller tilsvarende ideelt barnekreftformål. Personlige eiendeler utlånt etter § 6 forblir hans personlige eiendom.</p>
+                </div>
+            </div>
+
+            <div class="p-5 border-t border-brg/10 bg-ivory rounded-b-3xl flex justify-end shrink-0">
+                <button type="button" onclick="closeStatutesModal()" data-i18n="closeShortBtn" class="bg-brg hover:bg-brg-light text-gold font-display font-bold text-sm px-6 py-2.5 rounded-xl transition-colors cursor-pointer">
+                    Lukk
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Sentral bildekonstant for Elsa: bytt filbane eller data-URL her for enkelt å erstatte bildet
+        const ELSA_BILDE = "Elsa Ice racer.png";
+
+        // Kobler ELSA_BILDE til alle bildeelementer med klassen .bilde-elsa
+        function initElsaImages() {
+            const images = document.querySelectorAll(".bilde-elsa");
+            images.forEach((img) => {
+                if (!img.getAttribute("src")) {
+                    img.src = ELSA_BILDE;
+                }
+            });
+        }
+
+        // Fallback dersom bildefilen ikke er tilgjengelig
+        function handleElsaImageError(imgElement, fallbackId) {
+            imgElement.classList.add("hidden");
+            const fallbackEl = document.getElementById(fallbackId);
+            if (fallbackEl) {
+                fallbackEl.classList.remove("hidden");
+            }
+        }
+
+        initElsaImages();
+
+        // Aktivt språk (initialiseres tidlig så alle hjelpere har gyldig verdi)
+        let currentLang = "no";
+
+        // Mobilmeny
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const iconOpen = document.getElementById("menu-icon-open");
+        const iconClose = document.getElementById("menu-icon-close");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            const isHidden = mobileMenu.classList.contains("hidden");
+            mobileMenu.classList.toggle("hidden");
+            mobileMenuBtn.setAttribute("aria-expanded", String(isHidden));
+            iconOpen.classList.toggle("hidden", !isHidden);
+            iconClose.classList.toggle("hidden", isHidden);
+        });
+
+        document.querySelectorAll(".mobile-link").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                mobileMenuBtn.setAttribute("aria-expanded", "false");
+                iconOpen.classList.remove("hidden");
+                iconClose.classList.add("hidden");
+            });
+        });
+
+        // Interaktiv donasjons- og effektvisning
+        const presetBtns = document.querySelectorAll(".preset-btn");
+        const customAmountInput = document.getElementById("custom-amount");
+        const impactAmountLabel = document.getElementById("impact-amount-label");
+        const impactDescription = document.getElementById("impact-description");
+
+        function updateImpactText(amount) {
+            const raw = amount !== undefined ? amount : customAmountInput.value;
+            const val = parseInt(raw, 10) || 0;
+            const unit = currentLang === "en" ? "NOK" : "kr";
+            const locale = currentLang === "en" ? "en-US" : "nb-NO";
+            impactAmountLabel.textContent = val > 0 ? `${val.toLocaleString(locale)} ${unit}` : (currentLang === "en" ? "Custom amount" : "Valgfritt beløp");
+
+            if (currentLang === "en") {
+                if (val < 150) {
+                    impactDescription.textContent = "A warm contribution that together with other gifts helps create bright moments and encouragement for children with cancer (SFK.no – project Superselma, org.nr. 963 064 853).";
+                } else if (val < 400) {
+                    impactDescription.textContent = "Contributes directly to welcoming breaks, cinema tickets or small surprises for a child with cancer and their siblings during treatment.";
+                } else if (val < 900) {
+                    impactDescription.textContent = "Provides a solid contribution toward an experience day or a meaningful breather for a family in the middle of treatment.";
+                } else {
+                    impactDescription.textContent = "A substantial contribution to SFK.no – project Superselma (org.nr. 963 064 853) helping create bigger bright moments for the childhood cancer cause.";
+                }
+            } else {
+                if (val < 150) {
+                    impactDescription.textContent = "Et varmt bidrag som sammen med andre gaver går til å skape lyspunkter og oppmuntringer for kreftsyke barn (SFK.no – prosjekt Superselma, org.nr. 963 064 853).";
+                } else if (val < 400) {
+                    impactDescription.textContent = "Bidrar direkte til hyggelige pusterom, kinobilletter eller små overraskelser for et kreftsykt barn og søsken under behandling.";
+                } else if (val < 900) {
+                    impactDescription.textContent = "Gir et solid bidrag til en opplevelsesdag eller et kjærkomment avbrekk for en familie som står midt i behandling.";
+                } else {
+                    impactDescription.textContent = "Et betydelig bidrag til SFK.no – prosjekt Superselma (org.nr. 963 064 853) som hjelper til med å skape større lyspunkter for barnekreftsaken.";
+                }
+            }
+        }
+
+        presetBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                presetBtns.forEach((b) => {
+                    b.classList.remove("bg-brg", "text-gold", "border-brg");
+                    b.classList.add("border-brg/15", "text-brg");
+                });
+                btn.classList.remove("border-brg/15", "text-brg");
+                btn.classList.add("bg-brg", "text-gold", "border-brg");
+
+                const amount = btn.getAttribute("data-amount");
+                customAmountInput.value = amount;
+                updateImpactText(amount);
+            });
+        });
+
+        customAmountInput.addEventListener("input", (e) => {
+            presetBtns.forEach((b) => {
+                b.classList.remove("bg-brg", "text-gold", "border-brg");
+                b.classList.add("border-brg/15", "text-brg");
+            });
+            updateImpactText(e.target.value);
+        });
+
+        // Fane- og sporsplitting: Gi sponsing / Bestill teambuilding
+        let currentSponsorMode = "teambuilding";
+        const tabSponsing = document.getElementById("tab-sponsing");
+        const tabTeambuilding = document.getElementById("tab-teambuilding");
+        const toggleModeSponsing = document.getElementById("toggle-mode-sponsing");
+        const toggleModeTeambuilding = document.getElementById("toggle-mode-teambuilding");
+        const cardGiSponsing = document.getElementById("card-gi-sponsing");
+        const cardBestillTeambuilding = document.getElementById("card-bestill-teambuilding");
+        const formModeBadge = document.getElementById("form-mode-badge");
+        const formHeading = document.getElementById("form-heading");
+        const formSubtext = document.getElementById("form-subtext");
+        const messageLabel = document.getElementById("message-label");
+        const submitSponsorBtn = document.getElementById("submit-sponsor-btn");
+        const sponsorTierSelect = document.getElementById("sponsor-tier");
+
+        function syncSponsorModeCopy() {
+            const isSponsing = currentSponsorMode === "sponsing";
+            const isEn = currentLang === "en";
+            const prevIndex = sponsorTierSelect ? sponsorTierSelect.selectedIndex : 0;
+
+            if (isSponsing) {
+                formModeBadge.textContent = isEn ? "Give sponsorship" : "Gi sponsing";
+                formHeading.textContent = isEn ? "Give sponsorship to Project Elsa / SFK.no" : "Gi sponsing til Prosjekt Elsa / SFK.no";
+                formSubtext.textContent = isEn
+                    ? "Prepare a sponsorship inquiry with no vehicle branding, where surplus funds go to SFK.no – project Superselma (org.nr. 963 064 853)."
+                    : "Send en sponsorhenvendelse uten branding på bilen, der overskuddet går til SFK.no – prosjekt Superselma (org.nr. 963 064 853).";
+                messageLabel.textContent = isEn ? "Message / how you would like to give sponsorship" : "Melding / hvordan dere ønsker å gi sponsing";
+                submitSponsorBtn.textContent = isEn ? "Prepare sponsorship inquiry" : "Klargjør sponsorhenvendelse";
+                if (sponsorTierSelect && prevIndex < 0) sponsorTierSelect.selectedIndex = 1;
+            } else {
+                formModeBadge.textContent = isEn ? "Book teambuilding" : "Bestill teambuilding";
+                formHeading.textContent = isEn ? "Book teambuilding on ice" : "Bestill teambuilding på isen";
+                formSubtext.textContent = isEn
+                    ? "Fill in details to prepare an inquiry for teambuilding on ice with Elsa, where everyone gets moments of light and Superselma gets the surplus."
+                    : "Fyll inn detaljer for å klargjøre en henvendelse om teambuilding på isen med Elsa, der alle får lysglimt og Superselma får overskuddet.";
+                messageLabel.textContent = isEn ? "Preferences for teambuilding on ice or message" : "Ønsker for teambuilding på isen eller melding";
+                submitSponsorBtn.textContent = isEn ? "Prepare teambuilding booking" : "Klargjør bestilling av teambuilding";
+                if (sponsorTierSelect && prevIndex < 0) sponsorTierSelect.selectedIndex = 0;
+            }
+        }
+
+        function selectSponsorTab(mode) {
+            currentSponsorMode = mode === "sponsing" ? "sponsing" : "teambuilding";
+            const isSponsing = currentSponsorMode === "sponsing";
+
+            if (tabSponsing && tabTeambuilding) {
+                tabSponsing.setAttribute("aria-selected", String(isSponsing));
+                tabTeambuilding.setAttribute("aria-selected", String(!isSponsing));
+
+                tabSponsing.className = isSponsing
+                    ? "sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg bg-brg text-gold shadow-lg transition-all cursor-pointer"
+                    : "sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg/20 bg-ivory text-brg hover:border-brg transition-all cursor-pointer";
+
+                tabTeambuilding.className = !isSponsing
+                    ? "sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg bg-brg text-gold shadow-lg transition-all cursor-pointer"
+                    : "sponsor-tab-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base border-2 border-brg/20 bg-ivory text-brg hover:border-brg transition-all cursor-pointer";
+            }
+
+            if (toggleModeSponsing && toggleModeTeambuilding) {
+                toggleModeSponsing.className = isSponsing
+                    ? "px-3.5 py-2 rounded-lg text-xs font-display font-bold bg-brg text-gold transition-colors cursor-pointer"
+                    : "px-3.5 py-2 rounded-lg text-xs font-display font-bold text-brg hover:bg-ivory transition-colors cursor-pointer";
+
+                toggleModeTeambuilding.className = !isSponsing
+                    ? "px-3.5 py-2 rounded-lg text-xs font-display font-bold bg-brg text-gold transition-colors cursor-pointer"
+                    : "px-3.5 py-2 rounded-lg text-xs font-display font-bold text-brg hover:bg-ivory transition-colors cursor-pointer";
+            }
+
+            if (cardGiSponsing && cardBestillTeambuilding) {
+                cardGiSponsing.classList.toggle("ring-4", isSponsing);
+                cardGiSponsing.classList.toggle("ring-brg/40", isSponsing);
+                cardBestillTeambuilding.classList.toggle("ring-4", !isSponsing);
+                cardBestillTeambuilding.classList.toggle("ring-gold", !isSponsing);
+            }
+
+            if (sponsorTierSelect) {
+                sponsorTierSelect.selectedIndex = isSponsing ? 1 : 0;
+            }
+
+            syncSponsorModeCopy();
+        }
+
+        function focusBookingForm(mode) {
+            selectSponsorTab(mode);
+            const formBox = document.getElementById("sponsor-skjema-boks");
+            if (formBox) {
+                formBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+            const firstInput = document.getElementById("company-name");
+            if (firstInput) {
+                setTimeout(() => firstInput.focus(), 250);
+            }
+        }
+
+        // Sponsor- og teambuilding-henvendelse
+        const sponsorForm = document.getElementById("sponsor-form");
+        const sponsorConfirmation = document.getElementById("sponsor-confirmation");
+        const sponsorSummaryText = document.getElementById("sponsor-summary-text");
+        const mailtoSponsorLink = document.getElementById("mailto-sponsor-link");
+
+        sponsorForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const isEn = currentLang === "en";
+            const company = document.getElementById("company-name").value.trim();
+            const person = document.getElementById("contact-person").value.trim();
+            const email = document.getElementById("contact-email").value.trim();
+            const phone = document.getElementById("contact-phone").value.trim() || (isEn ? "Not provided" : "Ikke oppgitt");
+            const teamSize = document.getElementById("team-size").value.trim() || (isEn ? "Not provided" : "Ikke oppgitt");
+            const tier = document.getElementById("sponsor-tier").value;
+
+            const modeLabel = isEn
+                ? (currentSponsorMode === "sponsing" ? "Give sponsorship" : "Book teambuilding")
+                : (currentSponsorMode === "sponsing" ? "Gi sponsing" : "Bestill teambuilding");
+
+            const defaultMsg = isEn
+                ? (currentSponsorMode === "sponsing"
+                    ? "Would like an informal chat about giving sponsorship to the cause, with surplus going to SFK.no – project Superselma."
+                    : "Would like an informal chat about booking teambuilding on ice with Elsa.")
+                : (currentSponsorMode === "sponsing"
+                    ? "Ønsker en uforpliktende prat om å gi sponsing til saken, der overskuddet går til SFK.no – prosjekt Superselma."
+                    : "Ønsker en uforpliktende prat om bestilling av teambuilding på isen med Elsa.");
+
+            const message = document.getElementById("sponsor-message").value.trim() || defaultMsg;
+
+            const summary = isEn
+                ? `Hi Theo,\n\nWe would like to get in touch regarding: ${modeLabel} (Project Elsa – for a Brighter Tomorrow).\n\nCompany / Name: ${company}\nContact person: ${person}\nEmail: ${email}\nPhone: ${phone}\nTeam size (if applicable): ${teamSize}\nSelected track: ${tier}\n\nMessage:\n${message}\n\nBest regards,\n${person} (${company})`
+                : `Hei Theo,\n\nVi ønsker å ta kontakt angående: ${modeLabel} (Prosjekt Elsa – for en lysere morgendag).\n\nBedrift / Navn: ${company}\nKontaktperson: ${person}\nE-post: ${email}\nTelefon: ${phone}\nAntall deltakere (hvis aktuelt): ${teamSize}\nValgt spor: ${tier}\n\nMelding:\n${message}\n\nMed vennlig hilsen,\n${person} (${company})`;
+
+            sponsorSummaryText.textContent = summary;
+            const subjectPrefix = isEn ? `${modeLabel} – Project Elsa (${company})` : `${modeLabel} – Prosjekt Elsa (${company})`;
+            const subject = encodeURIComponent(subjectPrefix);
+            const body = encodeURIComponent(summary);
+            mailtoSponsorLink.href = `mailto:?subject=${subject}&body=${body}`;
+
+            sponsorConfirmation.classList.remove("hidden");
+            sponsorConfirmation.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+
+        function copySponsorSummary() {
+            const text = sponsorSummaryText.textContent;
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                const feedback = document.getElementById("copy-feedback");
+                feedback.classList.remove("hidden");
+                setTimeout(() => feedback.classList.add("hidden"), 3000);
+            } catch (err) {
+                console.error("Kunne ikke kopiere tekst:", err);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Modalstyring
+        const donationModal = document.getElementById("donation-modal");
+        const statutesModal = document.getElementById("statutes-modal");
+
+        function openDonationModal() {
+            donationModal.classList.remove("hidden");
+            donationModal.classList.add("flex");
+        }
+
+        function closeDonationModal() {
+            donationModal.classList.add("hidden");
+            donationModal.classList.remove("flex");
+        }
+
+        function openStatutesModal() {
+            statutesModal.classList.remove("hidden");
+            statutesModal.classList.add("flex");
+        }
+
+        function closeStatutesModal() {
+            statutesModal.classList.add("hidden");
+            statutesModal.classList.remove("flex");
+        }
+
+        [donationModal, statutesModal].forEach((modal) => {
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+            });
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeDonationModal();
+                closeStatutesModal();
+            }
+        });
+
+        // Støttespillere: fanevalg & kategorifilter
+        let activeSupporterKey = "sfk";
+        let activeSupporterFilter = "all";
+
+        const supportersData = {
+            sfk: {
+                no: {
+                    tag: "Hovedmottaker av overskudd",
+                    title: "SFK-prosjekt superselma",
+                    meta: "SFK.no • Org.nr. 963 064 853",
+                    desc: "Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853) er hovedmottakeren som alt overskudd fra Prosjekt Elsa skal gå til for å skape lyspunkter for kreftsyke barn og deres familier.",
+                    card: "Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853), hovedmottaker av overskuddet."
+                },
+                en: {
+                    tag: "Primary Surplus Recipient",
+                    title: "SFK-prosjekt superselma",
+                    meta: "SFK.no • Org.nr. 963 064 853",
+                    desc: "Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853) is the primary recipient of surplus funds from Project Elsa to help create bright moments for children affected by cancer and their families.",
+                    card: "Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853), primary surplus recipient."
+                }
+            },
+            hebbes: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "Hebbes-isbane",
+                    meta: "Isbane & opplevelser",
+                    desc: "Hebbes-isbane er oppført som støttespiller knyttet til isbanekjøring og kjøreopplevelser på isen.",
+                    card: "Støttespiller knyttet til isbanekjøring og fartsfylte opplevelser på isen."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "Hebbes-isbane",
+                    meta: "Ice track & experiences",
+                    desc: "Hebbes-isbane is listed as a supporter connected to ice driving and on-ice experiences.",
+                    card: "Supporter connected to ice driving and high-energy experiences on the ice."
+                }
+            },
+            norconsult: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "NOrsonsult",
+                    meta: "Støttespiller",
+                    desc: "NOrsonsult er oppført som støttespiller rundt prosjektet.",
+                    card: "Støttespiller oppført blant aktørene rundt prosjektet."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "NOrsonsult",
+                    meta: "Supporter",
+                    desc: "NOrsonsult is listed as a supporter connected to the project.",
+                    card: "Supporter listed among the contributors around the project."
+                }
+            },
+            williams: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "Sir williams",
+                    meta: "Støttespiller",
+                    desc: "Sir williams er oppført blant støttespillerne tilknyttet Prosjekt Elsa.",
+                    card: "Støttespiller oppført i oversikten over støttespillere rundt Prosjekt Elsa."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "Sir williams",
+                    meta: "Supporter",
+                    desc: "Sir williams is listed among the supporters connected to Project Elsa.",
+                    card: "Supporter listed in the overview of supporters around Project Elsa."
+                }
+            },
+            sandberg: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "Sandberg classic",
+                    meta: "Klassisk bilkultur",
+                    desc: "Sandberg classic er oppført som støttespiller knyttet til klassisk bilkultur og miljøet rundt bilen.",
+                    card: "Støttespiller knyttet til klassisk bilkultur og miljøet rundt bilen."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "Sandberg classic",
+                    meta: "Classic car culture",
+                    desc: "Sandberg classic is listed as a supporter connected to classic automotive culture and the car community.",
+                    card: "Supporter connected to classic automotive culture and the car community."
+                }
+            },
+            swallows: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "swallows racing",
+                    meta: "Racingarv",
+                    desc: "swallows racing er oppført som støttespiller og en del av racingarven som ligger til grunn for «Elsa».",
+                    card: "Støttespiller og del av racingarven som danner bakgrunnen for «Elsa»."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "swallows racing",
+                    meta: "Racing heritage",
+                    desc: "swallows racing is listed as a supporter and part of the racing heritage behind «Elsa».",
+                    card: "Supporter and part of the racing heritage behind «Elsa»."
+                }
+            },
+            lindholms: {
+                no: {
+                    tag: "Støttespiller",
+                    title: "The Lindholms",
+                    meta: "Dugnad & drift",
+                    desc: "The Lindholms er oppført som støttespiller bak dugnadsinnsatsen, driften og engasjementet rundt Prosjekt Elsa.",
+                    card: "Familien bak dugnad, drift og engasjementet rundt Prosjekt Elsa."
+                },
+                en: {
+                    tag: "Supporter",
+                    title: "The Lindholms",
+                    meta: "Volunteer effort & operations",
+                    desc: "The Lindholms are listed as a supporter behind the volunteer hours, operations and commitment around Project Elsa.",
+                    card: "The family behind the volunteer hours, operations and dedication around Project Elsa."
+                }
+            }
+        };
+
+        function renderSupporterPanel() {
+            const lang = currentLang === "en" ? "en" : "no";
+            const item = supportersData[activeSupporterKey] ? supportersData[activeSupporterKey][lang] : supportersData.sfk[lang];
+            const tagEl = document.getElementById("supporter-panel-tag");
+            const titleEl = document.getElementById("supporter-panel-title");
+            const metaEl = document.getElementById("supporter-panel-meta");
+            const descEl = document.getElementById("supporter-panel-desc");
+
+            if (tagEl) tagEl.textContent = item.tag;
+            if (titleEl) titleEl.textContent = item.title;
+            if (metaEl) metaEl.textContent = item.meta;
+            if (descEl) descEl.textContent = item.desc;
+
+            Object.keys(supportersData).forEach((key) => {
+                const cardTextEl = document.getElementById(`sup-card-${key}`);
+                if (cardTextEl && supportersData[key][lang]) {
+                    cardTextEl.textContent = supportersData[key][lang].card;
+                }
+            });
+
+            document.querySelectorAll(".supporter-tab-btn").forEach((btn) => {
+                const isSelected = btn.getAttribute("data-supporter-key") === activeSupporterKey;
+                btn.className = isSelected
+                    ? "supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg bg-brg text-gold transition-all cursor-pointer"
+                    : "supporter-tab-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm border-2 border-brg/15 bg-white text-brg hover:border-brg transition-all cursor-pointer";
+            });
+
+            document.querySelectorAll(".supporter-card").forEach((card) => {
+                const isSelected = card.getAttribute("data-key") === activeSupporterKey;
+                card.classList.toggle("border-gold", isSelected);
+                card.classList.toggle("border-brg/10", !isSelected);
+            });
+        }
+
+        function selectSupporter(key) {
+            if (supportersData[key]) {
+                activeSupporterKey = key;
+                renderSupporterPanel();
+            }
+        }
+
+        function setSupporterFilter(filterKey) {
+            activeSupporterFilter = filterKey;
+            const filterMap = {
+                all: "sup-filter-all",
+                purpose: "sup-filter-purpose",
+                heritage: "sup-filter-heritage"
+            };
+            Object.entries(filterMap).forEach(([k, id]) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const active = k === filterKey;
+                el.className = active
+                    ? "px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm bg-brg text-gold border-2 border-brg transition-colors cursor-pointer"
+                    : "px-4 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm bg-white text-brg border-2 border-brg/15 hover:border-brg transition-colors cursor-pointer";
+            });
+
+            document.querySelectorAll(".supporter-card").forEach((card) => {
+                const cat = card.getAttribute("data-category");
+                const show = filterKey === "all" || cat === filterKey;
+                card.classList.toggle("hidden", !show);
+            });
+        }
+
+        // Språkveksler (NO / EN) med full oversettelse av all synlig UI-tekst
+        const i18nStrings = {
+            no: {
+                pageTitle: "Prosjekt Elsa – for en lysere morgendag | Racingarv med reell effekt",
+                brandSubtitle: "For en lysere morgendag",
+                navAbout: "Om prosjektet",
+                navPurpose: "Formålet & Superselma",
+                navCar: "Bilen & Løpet",
+                navSupporters: "Støttespillere",
+                navGiveSponsor: "Gi sponsing",
+                navBookTeam: "Bestill teambuilding",
+                navBoard: "Kontakt & Styret",
+                ctaSupport: "Støtt saken",
+                ctaVippsDonate: "Støtt via Vipps / Doner",
+                heroBadge: "Ideell forening • Stiftet i Bærum 2026",
+                heroTitle: "Prosjekt Elsa – <br class=\"hidden sm:inline\" /><span class=\"text-gold\">for en lysere morgendag</span>",
+                heroSlogan: "«Racingarv med reell effekt»",
+                heroLead: "Vi forener lidenskapen for klassisk motorsport, isbanekjøring, Årsunda Speedweek og publikumsutstillinger på Gatebil og Oslo Motor Show med ett tydelig mål: å skape lyspunkter for kreftsyke barn og deres familier gjennom <strong>SFK.no – prosjekt Superselma (org.nr. 963 064 853)</strong>. Vi skal også ha det gøy underveis i innsamlingen for alle som bidrar :)",
+                heroDonateBtn: "Støtt via Vipps / Doner",
+                heroBookBtn: "Bestill teambuilding",
+                heroPeriodLabel: "Prosjektperiode",
+                heroCarPill: "Jaguar & Swallows Racing • Over 600 Nm",
+                heroImgFallbackTitle: "Bilde av Elsa («Elsa Ice racer.png»)",
+                heroImgFallbackText: "Legg filen <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">Elsa Ice racer.png</code> i samme mappe som <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">index.html</code>, eller oppdater konstanten <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">ELSA_BILDE</code> i skriptet.",
+                heroImgCaptionLeft: "Elsa • Jaguar & Swallows Racing • Over 600 Nm",
+                heroImgCaptionRight: "Høy mestring på kort tid • 100 % ideell drift",
+                heroSurplusLabel: "Overskudd til formålet",
+                heroSurplusValue: "100 % til SFK.no",
+                heroRecipientLabel: "Hovedmottaker",
+                heroRecipientValue: "Prosjekt Superselma (963 064 853)",
+                heroArenasLabel: "Planlagte arenaer:",
+                arenaIce: "Isbanekjøring (Hebbes Racing)",
+                linkHebbesIce: "Hebbes Racing (Facebook)",
+                linkArsundaOfficial: "Årsunda Speedweek (arsunda.se)",
+                aboutBadge: "Bakgrunn & Drift",
+                aboutTitle: "Når lidenskap for bil og motorsport blir til konkret hjelp",
+                aboutLead: "<strong>Prosjekt Elsa – for en lysere morgendag</strong> er en frittstående, ideell og ikke-kommersiell forening stiftet 19. november 2026 i Bærum kommune. Prosjektet har en planlagt første levetid på to år (2026–2028) med mulighet for forlengelse – og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)",
+                lowCostTitle: "Minimale kostnader – styreleder, dugnadstimer og reell effekt",
+                lowCostP1: "I Prosjekt Elsa holdes kostnadene nede ved at bilen holdes og driftes av meg som styreleder (<strong>Theo A. F. Y. Lindholm</strong>) og gjennom <strong>dugnadstimer</strong>. Jeg eier raserbilen («Elsa»), verkstedet og utstyret personlig, og låner dette ut til foreningen <strong>vederlagsfritt og uten heftelser eller betingelser</strong> frem til den dagen foreningen opphører.",
+                lowCostP2: "Eventuell verkstedtid kan leies av foreningen til kostpris. Med dugnadstimer, engasjement og lav drift går midlene dit de gjør mest nytte – og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)",
+                promiseLabel: "Vårt løfte",
+                promiseQuote: "«Hver eneste krone i overskudd fra foreningens innsamlinger og sponsorater skal gå uavkortet til å skape lyspunkter for syke barn.»",
+                promiseStatute: "Vedtektsfestet i § 2 og § 5",
+                pillar1Title: "Styreleder, dugnad & lav drift",
+                pillar1Text: "Bilen holdes og driftes av styreleder og gjennom dugnadstimer, med gratis utlån av bil, verksted og utstyr uten heftelser til foreningen opphører. Vi holder kostnadene nede og sørger for at vi har det gøy underveis i innsamlingen for alle som bidrar :)",
+                pillar2Title: "Motorsport & Opplevelser",
+                pillar2Text: "Gjennom isbanekjøring om vinteren, Årsunda Speedweek og utstillinger på Gatebil og Oslo Motor Show skaper vi engasjement, mestring og gode opplevelser for saken.",
+                pillar3Title: "Full åpenhet & Revisjon",
+                pillar3Text: "Foreningen har egen bankkonto atskilt fra privatøkonomi. Alle gaver, sponsorinntekter og bilag bokføres ryddig og revideres av valgt revisor Rolf Lindholm.",
+                purposeBadge: "Hovedmottaker av overskuddet",
+                purposeTitle: "SFK.no – Prosjekt <span class=\"text-gold\">Superselma</span>",
+                purposeP1: "Alt overskudd fra Prosjekt Elsa skal gå til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> – og dersom foreningen finner det passende, kan også andre formål som støtter syke barn og andre vurderes.",
+                purposeP2: "Prosjekt Superselma bidrar til lyspunkter, pusterom og gode opplevelser for barn som er rammet av kreft og deres familier når hverdagen er preget av sykdom og behandling.",
+                recipientCardLabel: "Mottakerorganisasjon",
+                recipientCardName: "Støtteforeningen for kreftrammede (SFK.no)",
+                recipientCardMeta: "Prosjekt Superselma • Org.nr. 963 064 853",
+                visitSfk: "Besøk SFK.no",
+                calcTitle: "Gi et bidrag til saken",
+                calcSubtitle: "Velg et beløp og se hvordan støtten bidrar • Org.nr. 963 064 853",
+                customAmountLabel: "Eller skriv valgfritt beløp (NOK)",
+                customAmountPlaceholder: "Skriv beløp...",
+                impactPrefix: "Din effekt",
+                calcCtaBtn: "Gå videre til Vipps / Kontonummer",
+                carBadge: "Prosjektbilen & Veikart",
+                carTitle: "Bilen «Elsa» & Sesongplan 2026–2028",
+                carLead: "Bilen er valgt for å skille seg ut og bygger på ekte racingarv fra <strong>Jaguar</strong> og <strong>Swallows Racing</strong>. Med <strong>over 600 Nm</strong> dreiemoment garanterer den en morsom og fartsfylt opplevelse med høy grad av mestring på kort tid – både på isbane, under <strong>Årsunda Speedweek</strong> og når den vises frem på <strong>Gatebil</strong> og <strong>Oslo Motor Show</strong>.",
+                carImgFallbackBadge: "Bildeplassholder • Elsa",
+                carImgFallbackTitle: "Elsa – Jaguar & Swallows Racing",
+                carImgFallbackText: "Bildet styres av <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">ELSA_BILDE</code> (standard: <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">\"Elsa Ice racer.png\"</code>). Plasser bildefilen ved siden av <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">index.html</code> eller bytt filbanen i skriptet for å vise bildet direkte.",
+                carHeritageBadge: "Eksklusiv racingarv",
+                carSpotlightTitle: "Bygget for å skille seg ut og gi rask mestring",
+                carSpotlightText: "«Elsa» kombinerer ekte racingarv fra <strong>Jaguar</strong> og <strong>Swallows Racing</strong> med <strong>over 600 Nm</strong> som gir en morsom, fartsfylt opplevelse med høy grad av mestring på kort tid. Bilen driftes av styreleder og gjennom dugnadstimer, mens alle er med for å skape lysglimt og støtte til Superselma – og ha det gøy underveis :)",
+                specHeritageLabel: "Racingarv",
+                specHeritageValue: "Jaguar & Swallows Racing",
+                specTorqueLabel: "Dreiemoment",
+                specTorqueValue: "Over 600 Nm",
+                specOpsLabel: "Drift & Utlån",
+                specOpsValue: "Gratis utlån & dugnad",
+                specPeriodLabel: "Prosjektperiode",
+                specPeriodValue: "2 år (2026–2028+)",
+                phase1Tag: "Fase 1",
+                phase1When: "Høst / Vinter 2026",
+                phase1Title: "Stiftelse & Klargjøring",
+                phase1Desc: "Stiftelse av foreningen i Bærum, registrering i Brønnøysundregistrene samt klargjøring av Elsa gjennom styreleders innsats og dugnadstimer med lave kostnader.",
+                phase1Status: "Pågående milepæl",
+                phase2Tag: "Fase 2",
+                phase2When: "Vinter 2027",
+                phase2Title: "Isbanekjøring & Årsunda Speedweek",
+                phase2Desc: "Planlagt deltakelse på isbane og <strong>Årsunda Speedweek</strong> – med over 600 Nm, høy mestring på kort tid og fartsfylte opplevelser som samler inn midler til saken.",
+                phasePlannedStatus: "Planlagt høydepunkt",
+                phase3Tag: "Fase 3",
+                phase3When: "Sommer / Høst 2027",
+                phase3Title: "Gatebil & Oslo Motor Show",
+                phase3Desc: "Planlagt visning og publikumsmøter på <strong>Gatebil</strong> og <strong>Oslo Motor Show</strong>, der racingarven fra Jaguar og Swallows Racing skaper blikkfang for Superselma.",
+                phase3Status: "Planlagt utstilling",
+                phase4Tag: "Fase 4",
+                phase4Title: "Videre innsamling & Overføring",
+                phase4Desc: "Fortsatt kjøring, Årsunda Speedweek, Gatebil og Oslo Motor Show med løpende overføring av overskudd til SFK.no – prosjekt Superselma, samtidig som alle som bidrar har det gøy underveis :)",
+                phase4Status: "Reell effekt for saken",
+                sponsorBadge: "Gi sponsing & Bestill teambuilding",
+                sponsorSectionTitle: "Gi sponsing eller bestill teambuilding på isen",
+                sponsorSectionLead: "Vi tilbyr ikke logoprofilering eller branding på bilen. Velg mellom å <strong>gi sponsing</strong> (enten direkte til Prosjekt Elsa eller direkte til SFK.no – prosjekt Superselma) eller å <strong>bestille teambuilding på isen</strong> med Elsa – der over 600 Nm og racingarv fra Jaguar og Swallows Racing gir rask mestring, <strong>alle får lysglimt</strong>, <strong>Superselma får overskuddet</strong>, og vi skal ha det gøy underveis i innsamlingen for alle som bidrar :)",
+                tabGiveSponsor: "Gi sponsing",
+                tabBookTeam: "Bestill teambuilding",
+                toggleGiveSponsor: "Gi sponsing",
+                toggleBookTeam: "Bestill teambuilding",
+                track1Badge: "Spor 1 • Gi sponsing / støtte",
+                track1Title: "Gi sponsing – hos oss eller direkte hos SFK.no",
+                track1Desc: "Uten branding på bilen går fokuset til å støtte formålet. Du kan gå rett til donasjons- og Vipps-informasjon hos <strong>Prosjekt Elsa</strong>, gå direkte til <strong>SFK.no – prosjekt Superselma (org.nr. 963 064 853)</strong>, eller klargjøre en sponsorhenvendelse under.",
+                track1Option1Title: "1. Doner / støtt hos Prosjekt Elsa",
+                track1Option1Desc: "Åpne donasjonsvinduet med Vipps- og støtteinfo for Prosjekt Elsa – alt overskudd går til SFK.no – prosjekt Superselma (org.nr. 963 064 853).",
+                track1Option1Btn: "Gå til donasjon hos Prosjekt Elsa",
+                track1Option2Title: "2. Gi direkte til SFK.no – prosjekt Superselma",
+                track1Option2Desc: "Gå direkte til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> og merk bidraget med <em>«Prosjekt Elsa»</em>.",
+                track1Option2Btn: "Gå direkte til SFK.no (Superselma)",
+                noBrandingLabel: "Ingen branding på bilen",
+                surplusToSfkLabel: "Overskudd til SFK.no (963 064 853)",
+                track2Badge: "Spor 2 • Bestill teambuilding på isen",
+                track2Title: "Bestill teambuilding på isen med Elsa",
+                track2Desc: "Gi bedriften eller teamet en morsom og fartsfylt <strong>teambuilding på isen</strong> med Elsa – valgt for å skille seg ut med ekte racingarv fra Jaguar og Swallows Racing og <strong>over 600 Nm</strong> som gir høy grad av mestring på kort tid. <strong>Alle får lysglimt</strong>, <strong>Superselma får overskuddet</strong>, og vi skal ha det gøy underveis i innsamlingen :)",
+                track2Bullet1: "<strong>Teambuilding på isen:</strong> Morsom og fartsfylt opplevelse der over 600 Nm gir høy grad av mestring på kort tid.",
+                track2Bullet2: "<strong>Alle får lysglimt:</strong> En minnerik og energigivende opplevelse for teamet samtidig som det skapes lyspunkter for syke barn.",
+                track2Bullet3: "<strong>Superselma får overskuddet:</strong> Uten branding på bilen går fokuset til opplevelsen og til at overskuddet tilfaller SFK.no – prosjekt Superselma (org.nr. 963 064 853).",
+                track2ScrollBtn: "Bestill teambuilding i skjemaet under",
+                track2FooterCaption: "Uten branding på bilen • Fokus på opplevelse & effekt:",
+                pillIceTeam: "Teambuilding på isen",
+                pillGlimpses: "Alle får lysglimt",
+                pillSuperselma: "Superselma får overskuddet",
+                formCompanyLabel: "Bedrift / Organisasjon / Navn *",
+                formCompanyPlaceholder: "Bedriftens navn eller ditt navn",
+                formPersonLabel: "Kontaktperson *",
+                formPersonPlaceholder: "Ditt navn",
+                formEmailLabel: "E-post *",
+                formPhoneLabel: "Telefon",
+                formTeamSizeLabel: "Antall deltakere i teamet",
+                formTrackLabel: "Valgt spor / opplegg",
+                tierOptTeam: "Bestill teambuilding på isen med Elsa (over 600 Nm, lysglimt & overskudd til Superselma)",
+                tierOptSponsor: "Gi sponsing der overskuddet går til SFK.no – prosjekt Superselma (org.nr. 963 064 853)",
+                tierOptCombo: "Kombinasjon av teambuilding på isen og sponsing til barnekreftsaken",
+                messagePlaceholder: "Fortell kort om teamet deres, ønsket periode på isen eller hvordan dere vil bidra...",
+                formReadyTitle: "Henvendelse klar!",
+                copyBtn: "Kopier tekst",
+                formReadyIntro: "Takk for engasjementet! Under finner du en ferdig oppsummert henvendelse du kan kopiere eller sende på e-post:",
+                openMailBtn: "Åpne i e-postprogram",
+                copiedFeedback: "✓ Kopiert til utklippstavle!",
+                supportersBadge: "Støttespillere",
+                supportersTitle: "Våre støttespillere rundt prosjektet",
+                supportersIntro: "En oversikt over støttespillere og aktører knyttet til formålet, isbanekjøring, racingarv og fellesskapet rundt Prosjekt Elsa. Klikk på en fane eller et kort for å se mer informasjon.",
+                supFilterAll: "Alle støttespillere (7)",
+                supFilterPurpose: "Formål & isbane",
+                supFilterHeritage: "Racingarv & familie",
+                supCardRolePurpose: "Støttespiller / Mottaker",
+                supCardRole: "Støttespiller",
+                supViewTab: "Vis i fane →",
+                footerAbout: "<strong>Prosjekt Elsa – for en lysere morgendag</strong> er en frittstående, partipolitisk nøytral og ideell forening med forretningsadresse i Bærum kommune. Stiftet 19. november 2026.",
+                openStatutesBtn: "Les vedtekter & styringsmodell",
+                footerBoardHeading: "Styret & Kontroll",
+                footerChairLabel: "Styreleder:",
+                footerMemberLabel: "Styremedlem:",
+                footerAuditorLabel: "Valgt revisor:",
+                footerFoundedLabel: "Kommune / Stiftet:",
+                footerFoundedValue: "Bærum • 19.11.2026",
+                footerRecipientHeading: "Mottaker & Kontakt",
+                footerSurplusTitle: "Mottaker av alt overskudd:",
+                footerSurplusOrg: "Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma)",
+                footerContactNote: "Har du spørsmål om foreningen, å gi sponsing eller teambuilding på isen? Bruk skjemaet i sponsorseksjonen over.",
+                footerCopyright: "© 2026 Prosjekt Elsa – for en lysere morgendag. Alle rettigheter reservert.",
+                footerBottomRight: "Ideell forening • Overskudd til SFK.no – prosjekt Superselma (org.nr. 963 064 853)",
+                donModalBadge: "Støtt Prosjekt Elsa",
+                donModalTitle: "Bidra til en lysere morgendag",
+                donModalLead: "Takk for at du vil være med og skape lyspunkter – og ha det gøy underveis i innsamlingen! Overskuddet går til <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong>.",
+                donVippsHeading: "Vipps for lag og foreninger",
+                donVippsBadge: "Aktiveres ved reg.",
+                donVippsSearch: "Søk opp: «Prosjekt Elsa»",
+                donVippsNote: "Vipps-nummer publiseres her så snart foreningens organisasjonsnummer er klart i Brønnøysundregistrene.",
+                donDirectHeading: "SFK.no – Prosjekt Superselma",
+                donDirectDesc: "Du kan også støtte <strong>Støtteforeningen for kreftrammede (org.nr. 963 064 853)</strong> direkte via <a href=\"https://sfk.no\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline font-bold text-brg hover:text-brg-light\">sfk.no</a> og merke bidraget med <em>«Prosjekt Elsa»</em>.",
+                closeBtn: "Lukk vindu",
+                closeShortBtn: "Lukk",
+                statutesSubtitle: "Vedtatt 19. november 2026 • Bærum",
+                statutesTitle: "Vedtekter & Styringsmodell",
+                s1Title: "§ 1 Navn og tilhørighet",
+                s1Body: "Foreningens navn er <strong>Prosjekt Elsa – for en lysere morgendag</strong> (<em>Racingarv med reell effekt</em>). Foreningen er en frittstående, partipolitisk nøytral og ideell forening med forretningsadresse i Bærum kommune.",
+                s2Title: "§ 2 Formål og fordeling av overskudd",
+                s2Body: "Foreningen samler inn gaver, sponsorbidrag og donasjoner til støtte for <strong>Støtteforeningen for kreftrammede (SFK.no – prosjekt Superselma, org.nr. 963 064 853)</strong> gjennom motorsport-, isbane- og publikumsaktiviteter. Alt overskudd går til dette formålet (dersom foreningen finner det passende, kan andre formål som støtter syke barn og andre vurderes).",
+                s34Title: "§ 3 & § 4 Medlemskap og Årsmøte",
+                s34Body: "Nytt medlemskap krever styrets godkjenning. Medlemsbasen består av ordinære medlemmer og stemmeberettigede medlemmer, der alle i styret har stemmerett. Ordinært årsmøte avholdes innen utgangen av desember hvert år (med unntak av stiftelsesåret 2026) og behandler årsberetning, regnskap, budsjett og årlig aktivitetsplan.",
+                s5Title: "§ 5 Styret",
+                s5Body: "Styret sitter permanent og består av to medlemmer: <strong>Theo A. F. Y. Lindholm</strong> (styreleder) og <strong>Jeanette Slåttun</strong> (styremedlem). Sittende styre må finne nytt styre før medlemmer går av eller foreningen oppløses.",
+                s6Title: "§ 6 Eiendeler, utlån, verkstedleie og revisjon",
+                s6Body: "Theo A. F. Y. Lindholm er personlig eier av alle eksisterende eiendeler og midler ved stiftelsen (herunder raserbil, verksted og utstyr). Disse lånes ut til foreningen gratis og uten heftelser eller betingelser frem til den dagen foreningen opphører. Verkstedtid kan leies av foreningen til kostpris. Regnskapet revideres av valgt revisor <strong>Rolf Lindholm</strong>.",
+                s78Title: "§ 7 & § 8 Vedtektsendringer og Oppløsning",
+                s78Body: "Vedtektsendringer krever 2/3 flertall på årsmøte. Ved oppløsning skal alle foreningens gjenværende overskudd tilfalle SFK.no (prosjekt Superselma, org.nr. 963 064 853) eller tilsvarende ideelt barnekreftformål. Personlige eiendeler utlånt etter § 6 forblir hans personlige eiendom."
+            },
+            en: {
+                pageTitle: "Project Elsa – for a Brighter Tomorrow | Racing Heritage with Real Impact",
+                brandSubtitle: "For a Brighter Tomorrow",
+                navAbout: "About the Project",
+                navPurpose: "Purpose & Superselma",
+                navCar: "The Car & Season",
+                navSupporters: "Supporters",
+                navGiveSponsor: "Give Sponsorship",
+                navBookTeam: "Book Teambuilding",
+                navBoard: "Contact & Board",
+                ctaSupport: "Support the Cause",
+                ctaVippsDonate: "Support via Vipps / Donate",
+                heroBadge: "Non-Profit Association • Founded in Bærum 2026",
+                heroTitle: "Project Elsa – <br class=\"hidden sm:inline\" /><span class=\"text-gold\">for a Brighter Tomorrow</span>",
+                heroSlogan: "“Racing Heritage with Real Impact”",
+                heroLead: "We combine a passion for classic motorsport, ice driving, Årsunda Speedweek and public exhibitions at Gatebil and Oslo Motor Show with one clear goal: creating moments of light for children with cancer and their families through <strong>SFK.no – project Superselma (org.nr. 963 064 853)</strong>. Everyone contributing should also have fun along the way :)",
+                heroDonateBtn: "Support via Vipps / Donate",
+                heroBookBtn: "Book Teambuilding",
+                heroPeriodLabel: "Project Period",
+                heroCarPill: "Jaguar & Swallows Racing • Over 600 Nm",
+                heroImgFallbackTitle: "Photo of Elsa («Elsa Ice racer.png»)",
+                heroImgFallbackText: "Place <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">Elsa Ice racer.png</code> in the same folder as <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">index.html</code>, or update the <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">ELSA_BILDE</code> constant in the script.",
+                heroImgCaptionLeft: "Elsa • Jaguar & Swallows Racing • Over 600 Nm",
+                heroImgCaptionRight: "High mastery in a short time • 100% non-profit",
+                heroSurplusLabel: "Surplus to the cause",
+                heroSurplusValue: "100% to SFK.no",
+                heroRecipientLabel: "Primary Recipient",
+                heroRecipientValue: "Project Superselma (963 064 853)",
+                heroArenasLabel: "Planned arenas:",
+                arenaIce: "Ice Driving (Hebbes Racing)",
+                linkHebbesIce: "Hebbes Racing (Facebook)",
+                linkArsundaOfficial: "Årsunda Speedweek (arsunda.se)",
+                aboutBadge: "Background & Operations",
+                aboutTitle: "When passion for cars and motorsport becomes tangible help",
+                aboutLead: "<strong>Prosjekt Elsa – for en lysere morgendag</strong> (Project Elsa – for a Brighter Tomorrow) is an independent, non-profit and non-commercial association founded on 19 November 2026 in Bærum municipality. The project has a planned initial lifespan of two years (2026–2028) with option for extension – and everyone contributing should have fun along the way :)",
+                lowCostTitle: "Minimal costs – chair, volunteer hours and real impact",
+                lowCostP1: "In Project Elsa, costs are kept low as the car is maintained and operated by me as chair (<strong>Theo A. F. Y. Lindholm</strong>) and through <strong>volunteer hours</strong>. I personally own the race car («Elsa»), the workshop and the equipment, and lend them to the association <strong>free of charge and without encumbrances or conditions</strong> until the day the association is dissolved.",
+                lowCostP2: "Any workshop time can be rented by the association at cost price. Through volunteer hours, commitment and lean operations, funds go where they do the most good – and everyone contributing should have fun along the way :)",
+                promiseLabel: "Our Promise",
+                promiseQuote: "“Every single krone of surplus from the association’s fundraising and sponsorships shall go in full to creating moments of light for sick children.”",
+                promiseStatute: "Enshrined in § 2 and § 5 of the statutes",
+                pillar1Title: "Chair, Volunteer Work & Lean Costs",
+                pillar1Text: "The car is maintained and operated by the chair and through volunteer hours, with free lending of car, workshop and equipment without encumbrances until dissolution. We keep costs minimal and make sure everyone contributing has fun along the way :)",
+                pillar2Title: "Motorsport & Experiences",
+                pillar2Text: "Through winter ice driving, Årsunda Speedweek and exhibitions at Gatebil and Oslo Motor Show, we create engagement, mastery and memorable experiences for the cause.",
+                pillar3Title: "Full Transparency & Audit",
+                pillar3Text: "The association has a separate bank account apart from personal finances. All gifts, sponsorship income and vouchers are cleanly recorded and audited by elected auditor Rolf Lindholm.",
+                purposeBadge: "Primary Recipient of Surplus",
+                purposeTitle: "SFK.no – Project <span class=\"text-gold\">Superselma</span>",
+                purposeP1: "All surplus from Project Elsa shall go to <strong>Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853)</strong> – and if the association finds it appropriate, other causes supporting sick children and others may also be considered.",
+                purposeP2: "Project Superselma helps create bright moments, breathing space and positive experiences for children affected by cancer and their families when everyday life is shaped by illness and treatment.",
+                recipientCardLabel: "Recipient Organization",
+                recipientCardName: "Støtteforeningen for kreftrammede (SFK.no)",
+                recipientCardMeta: "Project Superselma • Org.nr. 963 064 853",
+                visitSfk: "Visit SFK.no",
+                calcTitle: "Contribute to the Cause",
+                calcSubtitle: "Choose an amount and see how your support helps • Org.nr. 963 064 853",
+                customAmountLabel: "Or enter a custom amount (NOK)",
+                customAmountPlaceholder: "Enter amount...",
+                impactPrefix: "Your impact",
+                calcCtaBtn: "Continue to Vipps / Account Details",
+                carBadge: "The Project Car & Roadmap",
+                carTitle: "The Car «Elsa» & Season Plan 2026–2028",
+                carLead: "The car is chosen to stand out and builds on genuine racing heritage from <strong>Jaguar</strong> and <strong>Swallows Racing</strong>. With <strong>over 600 Nm</strong> of torque, it guarantees a fun, high-energy experience with a high degree of mastery in a short time – on the ice track, at <strong>Årsunda Speedweek</strong>, and on display at <strong>Gatebil</strong> and <strong>Oslo Motor Show</strong>.",
+                carImgFallbackBadge: "Image Placeholder • Elsa",
+                carImgFallbackTitle: "Elsa – Jaguar & Swallows Racing",
+                carImgFallbackText: "The image is controlled by <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">ELSA_BILDE</code> (default: <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">\"Elsa Ice racer.png\"</code>). Place the image file next to <code class=\"px-1.5 py-0.5 rounded bg-black/40 text-gold font-mono\">index.html</code> or update the path in the script to display it directly.",
+                carHeritageBadge: "Distinctive Racing Heritage",
+                carSpotlightTitle: "Built to stand out and deliver rapid mastery",
+                carSpotlightText: "«Elsa» combines genuine racing heritage from <strong>Jaguar</strong> and <strong>Swallows Racing</strong> with <strong>over 600 Nm</strong> of torque for a fun, fast-paced experience with high mastery in a short time. The car is run by the chair and through volunteer hours, while everyone joins in to create moments of light and support Superselma – and have fun along the way :)",
+                specHeritageLabel: "Racing Heritage",
+                specHeritageValue: "Jaguar & Swallows Racing",
+                specTorqueLabel: "Torque",
+                specTorqueValue: "Over 600 Nm",
+                specOpsLabel: "Operations & Loan",
+                specOpsValue: "Free loan & volunteer work",
+                specPeriodLabel: "Project Lifespan",
+                specPeriodValue: "2 years (2026–2028+)",
+                phase1Tag: "Phase 1",
+                phase1When: "Autumn / Winter 2026",
+                phase1Title: "Foundation & Preparation",
+                phase1Desc: "Establishing the association in Bærum, registering in the Brønnøysund Register Centre and preparing Elsa through the chair’s efforts and volunteer hours at low cost.",
+                phase1Status: "Current milestone",
+                phase2Tag: "Phase 2",
+                phase2When: "Winter 2027",
+                phase2Title: "Ice Driving & Årsunda Speedweek",
+                phase2Desc: "Planned participation in ice driving and <strong>Årsunda Speedweek</strong> – featuring over 600 Nm, high mastery in a short time and thrilling experiences raising funds for the cause.",
+                phasePlannedStatus: "Planned highlight",
+                phase3Tag: "Phase 3",
+                phase3When: "Summer / Autumn 2027",
+                phase3Title: "Gatebil & Oslo Motor Show",
+                phase3Desc: "Planned exhibition and public appearances at <strong>Gatebil</strong> and <strong>Oslo Motor Show</strong>, where heritage from Jaguar and Swallows Racing draws attention to Superselma.",
+                phase3Status: "Planned exhibition",
+                phase4Tag: "Phase 4",
+                phase4Title: "Continued Fundraising & Transfer",
+                phase4Desc: "Ongoing driving, Årsunda Speedweek, Gatebil and Oslo Motor Show with continuous transfer of surplus to SFK.no – project Superselma, while everyone contributing has fun along the way :)",
+                phase4Status: "Real impact for the cause",
+                sponsorBadge: "Give Sponsorship & Book Teambuilding",
+                sponsorSectionTitle: "Give sponsorship or book teambuilding on ice",
+                sponsorSectionLead: "We do not offer logo placement or branding on the car. Choose between <strong>giving sponsorship</strong> (either via Project Elsa or directly to SFK.no – project Superselma) or <strong>booking teambuilding on ice</strong> with Elsa – where over 600 Nm and racing heritage from Jaguar and Swallows Racing provide quick mastery, <strong>everyone gets moments of light</strong>, <strong>Superselma gets the surplus</strong>, and everyone contributing has fun along the way :)",
+                tabGiveSponsor: "Give sponsorship",
+                tabBookTeam: "Book teambuilding",
+                toggleGiveSponsor: "Give sponsorship",
+                toggleBookTeam: "Book teambuilding",
+                track1Badge: "Track 1 • Give sponsorship / support",
+                track1Title: "Give sponsorship – via us or directly via SFK.no",
+                track1Desc: "With no vehicle branding, the focus stays on supporting the cause. You can go straight to donation and Vipps info for <strong>Project Elsa</strong>, go directly to <strong>SFK.no – project Superselma (org.nr. 963 064 853)</strong>, or prepare a sponsorship inquiry below.",
+                track1Option1Title: "1. Donate / support via Project Elsa",
+                track1Option1Desc: "Open the donation modal with Vipps and support details for Project Elsa – all surplus goes to SFK.no – project Superselma (org.nr. 963 064 853).",
+                track1Option1Btn: "Go to donation at Project Elsa",
+                track1Option2Title: "2. Give directly to SFK.no – project Superselma",
+                track1Option2Desc: "Go directly to <strong>Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853)</strong> and mark your contribution <em>«Prosjekt Elsa»</em>.",
+                track1Option2Btn: "Go directly to SFK.no (Superselma)",
+                noBrandingLabel: "No vehicle branding",
+                surplusToSfkLabel: "Surplus to SFK.no (963 064 853)",
+                track2Badge: "Track 2 • Book teambuilding on ice",
+                track2Title: "Book teambuilding on ice with Elsa",
+                track2Desc: "Give your company or team a fun, high-energy <strong>teambuilding experience on ice</strong> with Elsa – chosen to stand out with genuine racing heritage from Jaguar and Swallows Racing and <strong>over 600 Nm</strong> delivering high mastery in a short time. <strong>Everyone gets moments of light</strong>, <strong>Superselma gets the surplus</strong>, and we have fun along the way :)",
+                track2Bullet1: "<strong>Teambuilding on ice:</strong> Fun and fast-paced experience where over 600 Nm delivers high mastery in a short time.",
+                track2Bullet2: "<strong>Everyone gets moments of light:</strong> A memorable and energizing experience for the team while creating bright moments for sick children.",
+                track2Bullet3: "<strong>Superselma gets the surplus:</strong> With no branding on the car, focus stays on the experience and surplus going to SFK.no – project Superselma (org.nr. 963 064 853).",
+                track2ScrollBtn: "Book teambuilding in the form below",
+                track2FooterCaption: "No vehicle branding • Focus on experience & impact:",
+                pillIceTeam: "Teambuilding on ice",
+                pillGlimpses: "Everyone gets moments of light",
+                pillSuperselma: "Superselma gets the surplus",
+                formCompanyLabel: "Company / Organization / Name *",
+                formCompanyPlaceholder: "Company name or your name",
+                formPersonLabel: "Contact Person *",
+                formPersonPlaceholder: "Your name",
+                formEmailLabel: "Email *",
+                formPhoneLabel: "Phone",
+                formTeamSizeLabel: "Number of team participants",
+                formTrackLabel: "Selected track / package",
+                tierOptTeam: "Book teambuilding on ice with Elsa (over 600 Nm, moments of light & surplus to Superselma)",
+                tierOptSponsor: "Give sponsorship with surplus going to SFK.no – project Superselma (org.nr. 963 064 853)",
+                tierOptCombo: "Combination of teambuilding on ice and sponsorship for the childhood cancer cause",
+                messagePlaceholder: "Share a brief note about your team, preferred dates on ice or how you would like to contribute...",
+                formReadyTitle: "Inquiry ready!",
+                copyBtn: "Copy text",
+                formReadyIntro: "Thank you for your engagement! Below is a prepared inquiry summary you can copy or send by email:",
+                openMailBtn: "Open in email client",
+                copiedFeedback: "✓ Copied to clipboard!",
+                supportersBadge: "Supporters",
+                supportersTitle: "Our supporters around the project",
+                supportersIntro: "An overview of supporters and contributors connected to the cause, ice driving, racing heritage and the community around Project Elsa. Click a tab or card to view details.",
+                supFilterAll: "All supporters (7)",
+                supFilterPurpose: "Purpose & ice track",
+                supFilterHeritage: "Racing heritage & family",
+                supCardRolePurpose: "Supporter / Recipient",
+                supCardRole: "Supporter",
+                supViewTab: "View in tab →",
+                footerAbout: "<strong>Prosjekt Elsa – for en lysere morgendag</strong> (Project Elsa – for a Brighter Tomorrow) is an independent, politically neutral and non-profit association with registered address in Bærum municipality. Founded 19 November 2026.",
+                openStatutesBtn: "Read statutes & governance",
+                footerBoardHeading: "Board & Oversight",
+                footerChairLabel: "Chair:",
+                footerMemberLabel: "Board Member:",
+                footerAuditorLabel: "Elected Auditor:",
+                footerFoundedLabel: "Municipality / Founded:",
+                footerFoundedValue: "Bærum • 19.11.2026",
+                footerRecipientHeading: "Recipient & Contact",
+                footerSurplusTitle: "Recipient of all surplus:",
+                footerSurplusOrg: "Støtteforeningen for kreftrammede (SFK.no – project Superselma)",
+                footerContactNote: "Have questions about the association, giving sponsorship or teambuilding on ice? Use the form in the sponsorship section above.",
+                footerCopyright: "© 2026 Prosjekt Elsa – for en lysere morgendag. All rights reserved.",
+                footerBottomRight: "Non-profit association • Surplus to SFK.no – project Superselma (org.nr. 963 064 853)",
+                donModalBadge: "Support Project Elsa",
+                donModalTitle: "Contribute to a Brighter Tomorrow",
+                donModalLead: "Thank you for helping create moments of light – and having fun along the way! Surplus goes to <strong>Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853)</strong>.",
+                donVippsHeading: "Vipps for clubs & associations",
+                donVippsBadge: "Active upon reg.",
+                donVippsSearch: "Search for: «Prosjekt Elsa»",
+                donVippsNote: "The Vipps number will be published here as soon as the association’s organization number is registered in the Brønnøysund Register Centre.",
+                donDirectHeading: "SFK.no – Project Superselma",
+                donDirectDesc: "You can also support <strong>Støtteforeningen for kreftrammede (org.nr. 963 064 853)</strong> directly via <a href=\"https://sfk.no\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline font-bold text-brg hover:text-brg-light\">sfk.no</a> and mark your gift <em>«Prosjekt Elsa»</em>.",
+                closeBtn: "Close window",
+                closeShortBtn: "Close",
+                statutesSubtitle: "Adopted 19 November 2026 • Bærum",
+                statutesTitle: "Statutes & Governance Model",
+                s1Title: "§ 1 Name and Affiliation",
+                s1Body: "The name of the association is <strong>Prosjekt Elsa – for en lysere morgendag</strong> (<em>Racingarv med reell effekt</em>). The association is an independent, politically neutral and non-profit association with registered address in Bærum municipality.",
+                s2Title: "§ 2 Purpose and Allocation of Surplus",
+                s2Body: "The association raises gifts, sponsorship contributions and donations in support of <strong>Støtteforeningen for kreftrammede (SFK.no – project Superselma, org.nr. 963 064 853)</strong> through motorsport, ice driving and public events. All surplus goes to this purpose (if the association finds it appropriate, other causes supporting sick children and others may also be considered).",
+                s34Title: "§ 3 & § 4 Membership and Annual Meeting",
+                s34Body: "New membership requires board approval. The membership base consists of ordinary members and voting members, with all board members holding voting rights. The ordinary annual meeting is held before the end of December each year (except the founding year 2026) and reviews the annual report, accounts, budget and annual activity plan.",
+                s5Title: "§ 5 The Board",
+                s5Body: "The board sits permanently and consists of two members: <strong>Theo A. F. Y. Lindholm</strong> (chair) and <strong>Jeanette Slåttun</strong> (board member). The sitting board must find a new board before members step down or the association is dissolved.",
+                s6Title: "§ 6 Assets, Lending, Workshop Rent and Audit",
+                s6Body: "Theo A. F. Y. Lindholm is the personal owner of all existing assets and funds at founding (including race car, workshop and equipment). These are lent to the association free of charge and without encumbrances or conditions until the day the association is dissolved. Workshop time may be rented by the association at cost price. Accounts are audited by elected auditor <strong>Rolf Lindholm</strong>.",
+                s78Title: "§ 7 & § 8 Amendments and Dissolution",
+                s78Body: "Amendments to the statutes require a 2/3 majority at the annual meeting. Upon dissolution, all remaining surplus of the association shall go to SFK.no (project Superselma, org.nr. 963 064 853) or an equivalent non-profit childhood cancer cause. Personal assets lent under § 6 remain his personal property."
+            }
+        };
+
+        function applyTranslations(lang) {
+            const dict = i18nStrings[lang] || i18nStrings.no;
+            document.documentElement.lang = lang === "en" ? "en" : "no";
+            document.title = dict.pageTitle;
+
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (Object.prototype.hasOwnProperty.call(dict, key)) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+                const key = el.getAttribute("data-i18n-html");
+                if (Object.prototype.hasOwnProperty.call(dict, key)) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            const unitText = lang === "en" ? "NOK" : "kr";
+            document.querySelectorAll(".preset-btn .currency-unit").forEach((span) => {
+                span.textContent = unitText;
+            });
+
+            if (customAmountInput) {
+                customAmountInput.placeholder = dict.customAmountPlaceholder;
+            }
+            const companyInput = document.getElementById("company-name");
+            const personInput = document.getElementById("contact-person");
+            const messageInput = document.getElementById("sponsor-message");
+            if (companyInput) companyInput.placeholder = dict.formCompanyPlaceholder;
+            if (personInput) personInput.placeholder = dict.formPersonPlaceholder;
+            if (messageInput) messageInput.placeholder = dict.messagePlaceholder;
+
+            const tierOptTeam = document.getElementById("tier-opt-team");
+            const tierOptSponsor = document.getElementById("tier-opt-sponsor");
+            const tierOptCombo = document.getElementById("tier-opt-combo");
+            if (tierOptTeam) {
+                tierOptTeam.textContent = dict.tierOptTeam;
+                tierOptTeam.value = dict.tierOptTeam;
+            }
+            if (tierOptSponsor) {
+                tierOptSponsor.textContent = dict.tierOptSponsor;
+                tierOptSponsor.value = dict.tierOptSponsor;
+            }
+            if (tierOptCombo) {
+                tierOptCombo.textContent = dict.tierOptCombo;
+                tierOptCombo.value = dict.tierOptCombo;
+            }
+
+            syncSponsorModeCopy();
+            renderSupporterPanel();
+            updateImpactText();
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang === "en" ? "en" : "no";
+            try {
+                localStorage.setItem("prosjekt_elsa_lang", currentLang);
+            } catch (err) {
+                // Ignorer dersom localStorage ikke er tilgjengelig
+            }
+
+            const btnNo = document.getElementById("lang-btn-no");
+            const btnEn = document.getElementById("lang-btn-en");
+            const isEn = currentLang === "en";
+
+            if (btnNo) {
+                btnNo.setAttribute("aria-pressed", String(!isEn));
+                btnNo.className = !isEn
+                    ? "px-2.5 py-1.5 rounded-lg bg-gold text-brg-dark transition-colors cursor-pointer"
+                    : "px-2.5 py-1.5 rounded-lg text-gold-light hover:text-white transition-colors cursor-pointer";
+            }
+            if (btnEn) {
+                btnEn.setAttribute("aria-pressed", String(isEn));
+                btnEn.className = isEn
+                    ? "px-2.5 py-1.5 rounded-lg bg-gold text-brg-dark transition-colors cursor-pointer"
+                    : "px-2.5 py-1.5 rounded-lg text-gold-light hover:text-white transition-colors cursor-pointer";
+            }
+
+            applyTranslations(currentLang);
+        }
+
+        // Initialisering av språk, sponsorfane og støttespillere
+        (function initApp() {
+            let initialLang = "no";
+            try {
+                const saved = localStorage.getItem("prosjekt_elsa_lang");
+                if (saved === "en" || saved === "no") {
+                    initialLang = saved;
+                }
+            } catch (err) {
+                // Ignorer dersom localStorage ikke er tilgjengelig
+            }
+            selectSponsorTab("teambuilding");
+            setSupporterFilter("all");
+            setLanguage(initialLang);
+        })();
+    </script>
+</body>
+</html>
